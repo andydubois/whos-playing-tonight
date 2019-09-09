@@ -18,6 +18,7 @@ import Home from '../Home/Home'
 import ViewAddBands from '../ViewAddBands/ViewAddBands'
 import AddShowPage from '../AddShowPage/AddShowPage'
 import AdminPage from '../AdminPage/AdminPage'
+import EventPage from '../EventPage/EventPage'
 
 import './App.css';
 
@@ -47,6 +48,7 @@ class App extends Component {
             <ProtectedRoute exact path='/bands' component={ViewAddBands} />{" "}
             <ProtectedRoute exact path='/addShow' component={AddShowPage} />
             <ProtectedRoute exact path='/admin' component={AdminPage} />
+            <ProtectedRoute exact path='/event/:id' component={EventPage} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

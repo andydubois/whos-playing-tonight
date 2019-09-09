@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Moment from "react-moment";
+
+
+//Components
+import HomeEventList from "../HomeEventList/HomeEventList"
 
 class Home extends Component {
   componentDidMount() {
@@ -14,6 +17,10 @@ class Home extends Component {
     });
   }
 
+
+
+
+
   render() {
     return (
       <div>
@@ -24,11 +31,7 @@ class Home extends Component {
         <ul>
           {this.props.store.homeReducer.map(show => {
             return (
-              <li key={show.id}>
-                {show.band_name}
-                <br />
-                <Moment format='MM/DD/YYYY'>{show.date}</Moment>
-              </li>
+                <HomeEventList show={show}/>
             );
           })}
         </ul>
