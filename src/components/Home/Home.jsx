@@ -31,7 +31,7 @@ class Home extends Component {
         <ul>
           {this.props.store.homeReducer.map(show => {
             return (
-                <HomeEventList show={show}/>
+                <HomeEventList show={show} history={this.props.history}/>
             );
           })}
         </ul>

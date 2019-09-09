@@ -3,6 +3,7 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 import homeReducer from './homeReducer'
+import eventDetailsReducer from './eventDetailsReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   homeReducer, //will have full list of shows entered into database
+  eventDetailsReducer, //will have all details for specified show
 });
 
 export default rootReducer;
