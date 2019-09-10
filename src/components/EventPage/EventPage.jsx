@@ -26,6 +26,7 @@ class EventPage extends Component {
 
   componentDidMount() {
     this.getDetails();
+    this.getGuests();
   }
 
   getDetails() {

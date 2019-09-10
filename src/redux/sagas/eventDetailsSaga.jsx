@@ -23,8 +23,11 @@ function* getEventGuests(action) {
         console.log("GET guests for event response", response.data);
         //gives list of guests to eventGuest reducer
         yield put ({
-            type: "SET_GUESTS"
-        })
+            type: "SET_GUESTS",
+            payload: response.data
+        });
+    } catch (error) {
+        console.log("error in event guest GET client side", error);
     }
 }
 
@@ -32,6 +35,7 @@ function* getEventGuests(action) {
 
 function* watchMe() {
   yield takeEvery("FETCH_EVENT_DETAILS", getEventDetails);
+  yield takeEvery("FETCH_GUESTS", getEventGuests);
 }
 
 export default watchMe;
