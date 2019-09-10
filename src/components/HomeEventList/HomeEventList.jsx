@@ -23,11 +23,15 @@ class HomeEventList extends Component {
   }
 
   render() {
+
+
+
     return (
       <li key={this.props.show.id} onClick={this.showDetailsClick}>
         {this.props.show.band_name}
         <br />
         <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
+
       </li>
     );
   }
