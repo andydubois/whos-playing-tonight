@@ -16,6 +16,10 @@ import Check from "@material-ui/icons/Check";
 
 class EventPage extends Component {
   state = {
+    rsvp: {
+      userId: this.props.store.user.id,
+      eventId: this.props.match.params.id
+    },
     addressShowing: false
   };
 
@@ -30,6 +34,7 @@ class EventPage extends Component {
     this.getGuests();
   }
 
+  //gets details about event being displayed
   getDetails() {
     this.props.dispatch({
       type: "FETCH_EVENT_DETAILS",
@@ -37,10 +42,26 @@ class EventPage extends Component {
     });
   }
 
+  //function to get guests going to event
   getGuests() {
     this.props.dispatch({
       type: "FETCH_GUESTS",
       payload: this.props.match.params.id
+    });
+  }
+
+  rsvpForEvent = () => {
+    this.props.dispatch({
+      type: "RSVP_EVENT",
+      payload: this.state.rsvp
+    });
+    this.getGuests();
+  };
+
+  notGoingToEvent = () => {
+    this.props.dispatch({
+      type: "NOT_GOING_TO_EVENT",
+      payload: this.state.rsvp
     });
   }
 
@@ -49,8 +70,17 @@ class EventPage extends Component {
     const addressShowing = this.state.addressShowing;
 
     let guestList = this.props.store.eventGuestReducer.map(guest => {
-      return <li><Check />{guest.username}</li>
-    })
+      return (
+        <li key={guest.username}>
+          {guest.username}
+          <Check />
+        </li>
+      );
+    });
+
+    if (guestList.includes(this.props.store.user.username)) {
+      console.log('YEEEEEEEAH IT WORKS');
+    }
 
     return (
       <div>
@@ -96,6 +126,8 @@ class EventPage extends Component {
             </TableBody>
           </Table>
           <ul>{guestList}</ul>
+          <Button onClick={this.rsvpForEvent}>RSVP</Button>
+          <Button onClick={this.notGoingToEvent}>NOT GOING ANYMORE</Button>
         </Paper>
       </div>
     );
