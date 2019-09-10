@@ -1,11 +1,12 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   const queryText = `
   SELECT "bands".band_name, "events".date, "events".id FROM "events"
   JOIN "band_event" ON "events".id="band_event".event_id

@@ -14,15 +14,15 @@ import MusicVideo from "@material-ui/icons/MusicVideo";
 import Navigation from "@material-ui/icons/Navigation";
 
 class EventPage extends Component {
-  state= {
-    addressShowing: false,
-  }
+  state = {
+    addressShowing: false
+  };
 
   addressVenueChange = () => {
     this.setState({
       addressShowing: !this.state.addressShowing
-    })
-  }
+    });
+  };
 
   componentDidMount() {
     this.getDetails();
@@ -35,10 +35,15 @@ class EventPage extends Component {
     });
   }
 
-
+  getGuests() {
+    this.props.dispatch({
+      type: "FETCH_GUESTS",
+      payload: this.props.match.params.id
+    });
+  }
 
   render() {
-    const addressShowing = this.state.addressShowing
+    const addressShowing = this.state.addressShowing;
     return (
       <div>
         <h1>EVENT PAGE</h1>
@@ -63,7 +68,11 @@ class EventPage extends Component {
                 </TableCell>
                 <TableCell>
                   <p>{this.props.store.band_name}</p>
-                  <p onClick={this.addressVenueChange}>{addressShowing ? this.props.store.location_name : `${this.props.store.number_street} ${this.props.store.city}, ${this.props.store.state}`}</p>
+                  <p onClick={this.addressVenueChange}>
+                    {addressShowing
+                      ? this.props.store.location_name
+                      : `${this.props.store.number_street} ${this.props.store.city}, ${this.props.store.state}`}
+                  </p>
                   <p>
                     {this.props.store.time_doors} / {this.props.store.time_show}
                   </p>
