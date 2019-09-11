@@ -2,33 +2,44 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 //Material UI Components
-import { withStyles } from "@material-ui/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+// import { withStyles } from "@material-ui/styles";
+// import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1
-  }
-});
+// const styles = theme => ({
+//   root: {
+//     flexGrow: 1
+//   }
+// });
 
 class ViewAddBands extends Component {
+
+    componentDidMount() {
+        this.getBandList();
+    }
+
+    getBandList() {
+    this.props.dispatch({
+        type: "FETCH_BANDS"
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <div>
         <h1>View/Add Bands</h1>
-        <div className={classes.root}>
+        {/* <div className={classes.root}>
           <Grid container spacing={0}>
             <Grid item xs={6}>
-              <Paper>xs=12</Paper>
+              <Paper>{this.props.store}</Paper>
             </Grid>
             <Grid item xs={6}>
               <Paper>xs=12</Paper>
             </Grid>
           </Grid>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -38,4 +49,4 @@ const mapStateToProps = store => ({
   store
 });
 
-export default withStyles(styles)(connect(mapStateToProps)(ViewAddBands));
+export default connect(mapStateToProps)(ViewAddBands);
