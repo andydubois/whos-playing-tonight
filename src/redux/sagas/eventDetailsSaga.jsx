@@ -38,7 +38,7 @@ function* rsvpForEvent(action) {
         let response = yield axios.post(`/api/eventDetails/rsvp/${userId}`, action.payload);
         console.log("POST rsvp for event response", response.data, action.payload);
         yield put ({
-            type: "SET_GUESTS",
+            type: "FETCH_GUESTS",
             payload: action.payload.eventId
         });
     } catch (error) {

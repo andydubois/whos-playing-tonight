@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const homeRouter = require('./routes/home.router');
 const eventDetailsRouter = require('./routes/eventDetails.router')
 const viewAddRouter = require('./routes/viewAdd.router')
+const bandDetailRouter = require('./routes/band.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/home', homeRouter);
 app.use('/api/eventDetails', eventDetailsRouter);
 app.use('/api/viewAdd', viewAddRouter)
+app.use('/api/band', bandDetailRouter)
 
 // Serve static files
 app.use(express.static('build'));

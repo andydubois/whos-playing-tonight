@@ -63,6 +63,7 @@ class EventPage extends Component {
       type: "NOT_GOING_TO_EVENT",
       payload: this.state.rsvp
     });
+    this.getGuests();
   }
 
   render() {

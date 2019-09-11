@@ -6,6 +6,8 @@ import homeReducer from './homeReducer'
 import eventDetailsReducer from './eventDetailsReducer'
 import eventGuestReducer from './eventGuestReducer'
 import viewAddBandsReducer from './viewAddBandsReducer'
+import newBandReducer from './newBandReducer'
+import bandPageReducer from './bandPageRouter'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +22,9 @@ const rootReducer = combineReducers({
   homeReducer, //will have full list of shows entered into database
   eventDetailsReducer, //will have all details for specified show
   eventGuestReducer, //will have all guests for specified show
-  viewAddBandsReducer //will have all bands in database
+  viewAddBandsReducer, //will have all bands in database
+  newBandReducer, //holds info for newly submitted band to database
+  bandPageReducer, //holds detail info for band specific page
 });
 
 export default rootReducer;

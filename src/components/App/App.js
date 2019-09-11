@@ -20,7 +20,9 @@ import AddShowPage from '../AddShowPage/AddShowPage'
 import AdminPage from '../AdminPage/AdminPage'
 import EventPage from '../EventPage/EventPage'
 
+import "./bootstrap-1.css";
 import './App.css';
+
 
 class App extends Component {
   componentDidMount () {

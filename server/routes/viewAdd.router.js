@@ -22,6 +22,18 @@ router.get("/", (req, res) => {
 /**
  * POST route template
  */
-router.post("/", (req, res) => {});
+router.post("/addBand", (req, res) => {
+    const queryText = `
+    INSERT INTO "bands" ("band_name") VALUES ($1);`;
+    pool.query(queryText, [req.body.band])
+    .then(result => {
+        res.sendStatus(200)
+        console.log('successful newBand POST server side')
+    })
+    .catch(error => {
+        console.log('error in addBand POST server side', error)
+        res.sendStatus(500)
+    })
+});
 
 module.exports = router;

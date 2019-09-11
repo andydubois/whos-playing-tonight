@@ -5,7 +5,7 @@ function* getAllBands(action) {
   console.log("client side bands GET", action);
   try {
     let response = yield axios.get("/api/viewAdd");
-    console.log("saga response", response.data);
+    console.log("getAllBands saga response", response.data);
     yield put({
       type: "SET_BANDS",
       payload: response.data
@@ -15,8 +15,24 @@ function* getAllBands(action) {
   }
 }
 
+function* addNewBand(action) {
+  console.log("client side add band POST", action);
+  try {
+    let response = yield axios.post(`/api/viewAdd/addBand`, action.payload);
+    console.log("addNewBand saga response", response.data);
+    yield put({
+      type: "FETCH_BANDS"
+    });
+  } catch (error) {
+    console.log("error in addNewBand POST client side", error);
+  }
+}
+
+
 function* watchMe() {
   yield takeEvery("FETCH_BANDS", getAllBands);
+  yield takeEvery("ADD_BAND", addNewBand);
 }
 
 export default watchMe;
+
