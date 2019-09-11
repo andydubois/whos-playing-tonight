@@ -1,11 +1,11 @@
 // Used to store event details for specific show returned from the server
-const bandPageReducer = (state = [], action) => {
+const bandShows = (state = [], action) => {
   switch (action.type) {
-    case "SET_BAND_DETAILS":
+    case "SET_PAST_SHOWS":
       return action.payload;
     default:
       return state;
   }
 };
 
-export default bandPageReducer;
+export default bandShows;
