@@ -9,6 +9,7 @@ import viewAddBandsReducer from './viewAddBandsReducer'
 import newBandReducer from './newBandReducer'
 import bandDetailsReducer from './bandDetailsReducer'
 import pastShowReducer from './pastShowReducer'
+import futureShowReducer from './futureShowReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   viewAddBandsReducer, //will have all bands in database
   newBandReducer, //holds info for newly submitted band to database
   bandDetailsReducer, //holds detail info for band specific page
-  pastShowReducer, //holds all shows by band in database
+  pastShowReducer, //holds all past shows by band in database
+  futureShowReducer //holds all future shows by band in database
 });
 
 export default rootReducer;

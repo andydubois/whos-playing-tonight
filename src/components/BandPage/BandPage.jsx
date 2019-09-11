@@ -9,9 +9,9 @@ class BandPage extends Component {
     return (
       <div>
         <h1>Band Page</h1>
-        <div class='container'>
-          <div class='row'>
-            <div class='col'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col'>
               <h4>Past Shows</h4>
             </div>
             <div class='col-6'>

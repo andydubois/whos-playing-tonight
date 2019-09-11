@@ -9,9 +9,13 @@ class ViewAddList extends Component {
       payload: this.props.band.id
     });
     this.props.dispatch({
-      type: "FETCH_BAND_SHOWS",
+      type: "FETCH_PAST_SHOWS",
       payload: this.props.band.id
     })
+    this.props.dispatch({
+      type: "FETCH_FUTURE_SHOWS",
+      payload: this.props.band.id
+    });
     this.props.history.push(`/bands/${this.props.band.id}`);
   };
 
