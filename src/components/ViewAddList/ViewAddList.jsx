@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 class ViewAddList extends Component {
 
-  showDetailsClick = action => {
+  getBandDetails = action => {
     this.props.dispatch({
       type: "FETCH_BAND_DETAILS",
       payload: this.props.band.id
@@ -13,7 +13,7 @@ class ViewAddList extends Component {
 
   render() {
     return (
-      <li key={this.props.band.id}>
+      <li key={this.props.band.id} onClick={this.getBandDetails}>
         {this.props.band.band_name}
       </li>
     );
