@@ -5,6 +5,13 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 
 class AddShowsPage extends Component {
+  state = {
+    showDate: "",
+    doorTime: "",
+    showTime: "",
+    venueId: ""
+  };
+
   componentDidMount() {
     this.getVenues();
   }
@@ -14,6 +21,14 @@ class AddShowsPage extends Component {
       type: "FETCH_VENUES"
     });
   }
+
+  handleChange = (propertyName, event) => {
+    this.setState({
+      ...this.state,
+      [propertyName]: event.target.value
+    });
+    console.log(this.state);
+  };
 
   render() {
     return (
@@ -53,8 +68,10 @@ class AddShowsPage extends Component {
           </div>
           <div className='form-group'>
             <label>Venue Selection</label>
-            <select className='form-control'>
-              <option value='0'>None</option>
+            <select
+              className='form-control'
+              onChange={event => this.handleChange("venueId", event)}>
+              <option value=''>None</option>
               {this.props.store.venueReducer.map(venue => {
                 return (
                   <option key={venue.id} value={venue.id}>
@@ -69,8 +86,19 @@ class AddShowsPage extends Component {
             <input
               type='text'
               className='form-control'
+              placeholder='Venue name here'
+              onChange={event => this.handleChange("Street", event)}
+              disabled={this.state.venueId === "" ? false : true}
+            />
+            <small className='form-text text-muted'>Give venue a name</small>
+          </div>
+          <div className='form-group'>
+            <input
+              type='text'
+              className='form-control'
               placeholder='123 Fake St'
               onChange={event => this.handleChange("Street", event)}
+              disabled={this.state.venueId === "" ? false : true}
             />
             <small className='form-text text-muted'>Street and #</small>
           </div>
@@ -80,6 +108,7 @@ class AddShowsPage extends Component {
               className='form-control'
               placeholder='Fakesville'
               onChange={event => this.handleChange("City", event)}
+              disabled={this.state.venueId === "" ? false : true}
             />
             <small className='form-text text-muted'>City</small>
           </div>
@@ -89,6 +118,7 @@ class AddShowsPage extends Component {
               className='form-control'
               placeholder='MN'
               onChange={event => this.handleChange("State", event)}
+              disabled={this.state.venueId === "" ? false : true}
             />
             <small className='form-text text-muted'>State</small>
           </div>
@@ -98,6 +128,7 @@ class AddShowsPage extends Component {
               className='form-control'
               placeholder='55555'
               onChange={event => this.handleChange("zip", event)}
+              disabled={this.state.venueId === "" ? false : true}
             />
             <small className='form-text text-muted'>Zip Code</small>
           </div>
