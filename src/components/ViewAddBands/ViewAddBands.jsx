@@ -53,7 +53,7 @@ class ViewAddBands extends Component {
               <h4>Add Band</h4>
               {/* <TextField label="New Band Here" fullWidth/>
               <TextField label="YT link to music here"/> */}
-              <form onSubmit={this.handleSubmit}>
+              <form className="newBandForm" onSubmit={this.handleSubmit}>
                 <div className='form-group'>
                   <label>Band</label>
                   <input

@@ -48,7 +48,11 @@ input {
     cursor: pointer;
 }
 
-form {
+.newBandForm {
     width: 100%;
+    height: auto;
+}
+
+.addShowForm {
     height: auto;
 }
