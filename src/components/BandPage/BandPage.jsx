@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ShowList from "../ShowList/ShowList";
 
 //Material UI Components
 import Button from "@material-ui/core/Button";
@@ -13,6 +14,17 @@ class BandPage extends Component {
           <div className='row'>
             <div className='col'>
               <h4>Past Shows</h4>
+              <ul>
+                {this.props.store.pastShowReducer.map(show => {
+                  return <ShowList show={show} />;
+                })}
+              </ul>
+              <h4>Future Shows</h4>
+              <ul>
+                {this.props.store.futureShowReducer.map(show => {
+                  return <ShowList show={show} />;
+                })}
+              </ul>
             </div>
             <div class='col-6'>
               <h4>Add YouTube music link</h4>
