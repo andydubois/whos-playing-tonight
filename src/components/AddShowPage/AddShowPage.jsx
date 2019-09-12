@@ -6,14 +6,33 @@ import Button from "@material-ui/core/Button";
 
 class AddShowsPage extends Component {
   state = {
-    showDate: "",
-    doorTime: "",
-    showTime: "",
-    venueId: ""
+    newAddress: false,
+    showInfo: {
+      showDate: "",
+      doorTime: "",
+      showTime: "",
+      venueId: "",
+      bandId: ""
+    },
+    address: {
+      numberStreet: "",
+      city: "",
+      state: "",
+      zip: ""
+    }
   };
+
+  submitNewShow = (event) => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: "ADD_SHOW",
+      payload: this.state.showInfo
+    })
+  }
 
   componentDidMount() {
     this.getVenues();
+    this.getBandList();
   }
 
   getVenues() {
@@ -22,19 +41,31 @@ class AddShowsPage extends Component {
     });
   }
 
+  getBandList() {
+    this.props.dispatch({
+      type: "FETCH_BANDS"
+    });
+  }
+
   handleChange = (propertyName, event) => {
     this.setState({
-      ...this.state,
-      [propertyName]: event.target.value
+      showInfo: {
+        ...this.state.showInfo,
+        [propertyName]: event.target.value
+      }
     });
     console.log(this.state);
+  };
+
+  showVenueForm = () => {
+    this.setState({ newAddress: !this.state.newAddress });
   };
 
   render() {
     return (
       <div>
         <h1>Add New Show</h1>
-        <form className='addShowForm'>
+        <form className='addShowForm' onSubmit={this.submitNewShow}>
           <div className='form-group'>
             <label>Date of Show</label>
             <input
@@ -81,57 +112,97 @@ class AddShowsPage extends Component {
               })}
             </select>
           </div>
-          <div className='form-group'>
-            <label>Manual Address Entry</label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Venue name here'
-              onChange={event => this.handleChange("Street", event)}
-              disabled={this.state.venueId === "" ? false : true}
-            />
-            <small className='form-text text-muted'>Give venue a name</small>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={this.showVenueForm}>
+            {this.state.newAddress ? "Hide Form" : "Add New Venue"}
+          </Button>
+          <div className={this.state.newAddress ? null : "hidden"}>
+            <form className='addShowForm'>
+              <div className='form-group'>
+                <label>
+                  If venue is not in dropdown, please enter address and venue
+                  name below, submit it, and then select it from the dropdown
+                  above.
+                </label>
+                <small className='form-text text-muted'>
+                  Give venue a name
+                </small>
+
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='Venue name here'
+                  onChange={event => this.handleChange("Street", event)}
+                  disabled={this.state.showInfo.venueId === "" ? false : true}
+                />
+              </div>
+              <div className='form-group'>
+                <small className='form-text text-muted'>Street and #</small>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='123 Fake St'
+                  onChange={event => this.handleChange("Street", event)}
+                  disabled={this.state.showInfo.venueId === "" ? false : true}
+                />
+              </div>
+              <div className='form-group'>
+                <small className='form-text text-muted'>City</small>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='Fakesville'
+                  onChange={event => this.handleChange("City", event)}
+                  disabled={this.state.showInfo.venueId === "" ? false : true}
+                />
+              </div>
+              <div className='form-group'>
+                <small className='form-text text-muted'>State</small>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='MN'
+                  onChange={event => this.handleChange("State", event)}
+                  disabled={this.state.showInfo.venueId === "" ? false : true}
+                />
+              </div>
+              <div className='form-group'>
+                <small className='form-text text-muted'>Zip Code</small>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='55555'
+                  onChange={event => this.handleChange("zip", event)}
+                  disabled={this.state.showInfo.venueId === "" ? false : true}
+                />
+              </div>
+              <Button type='submit' variant='contained' color='primary'>
+                Submit New Venue
+              </Button>
+            </form>
           </div>
           <div className='form-group'>
-            <input
-              type='text'
+            <label>Band Selection</label>
+            <select
               className='form-control'
-              placeholder='123 Fake St'
-              onChange={event => this.handleChange("Street", event)}
-              disabled={this.state.venueId === "" ? false : true}
-            />
-            <small className='form-text text-muted'>Street and #</small>
+              onChange={event => this.handleChange("bandId", event)}>
+              <option value=''>None</option>
+              {this.props.store.viewAddBandsReducer.map(band => {
+                return (
+                  <option key={band.id} value={band.id}>
+                    {band.band_name}
+                  </option>
+                );
+              })}
+            </select>
+            <small className='form-text text-muted'>
+              If band isn't in dropdown, navigate to "View Bands" page to add
+              band to list
+            </small>
           </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Fakesville'
-              onChange={event => this.handleChange("City", event)}
-              disabled={this.state.venueId === "" ? false : true}
-            />
-            <small className='form-text text-muted'>City</small>
-          </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='MN'
-              onChange={event => this.handleChange("State", event)}
-              disabled={this.state.venueId === "" ? false : true}
-            />
-            <small className='form-text text-muted'>State</small>
-          </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='55555'
-              onChange={event => this.handleChange("zip", event)}
-              disabled={this.state.venueId === "" ? false : true}
-            />
-            <small className='form-text text-muted'>Zip Code</small>
-          </div>
+
           <Button type='submit' variant='contained' color='primary'>
             Submit Event
           </Button>

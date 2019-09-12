@@ -57,3 +57,7 @@ input {
     height: auto;
     width: 75%;
 }
+
+.hidden {
+    display: none;
+}

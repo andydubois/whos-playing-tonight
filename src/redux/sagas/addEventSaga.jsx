@@ -16,9 +16,23 @@ function* getVenues(action) {
   }
 }
 
+function* addShow(action) {
+  console.log("client side addShow POST", action);
+  try {
+    let response = yield axios.post(`/api/addShow`);
+    console.log('addEvent saga response', response.data);
+    yield put ({
+      type: "FETCH_SHOWS"
+    });
+  } catch (error) {
+    console.log('error in addNewShow POST client side', error);
+  }
+}
+
 
 function* watchMe() {
   yield takeEvery("FETCH_VENUES", getVenues);
+  yield takeEvery("ADD_SHOW", addShow);
 }
 
 
