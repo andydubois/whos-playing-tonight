@@ -24,14 +24,15 @@ router.get("/venues", rejectUnauthenticated, (req, res) => {
 });
 
 router.post("/", rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
   const queryText = `
   WITH rows AS(INSERT INTO "events" (locations_id, date, creator_id, time_doors, time_show)
-  VALUES ('$1', '$2', '$3', '$4', '$5') RETURNING id)
-  INSERT INTO "band_event" (band_id, event_id) VALUES ('$6', (SELECT id FROM rows));`;
+  VALUES ($1, $2, $3, $4, $5) RETURNING id)
+  INSERT INTO "band_event" (band_id, event_id) VALUES ($6, (SELECT id FROM rows));`;
   pool.query(queryText, [req.body.venueId, req.body.showDate, req.user.id, req.body.doorTime, req.body.showTime, req.body.bandId])
   .then(result => {
     res.sendStatus(200)
-    console.log('sucessful newEvent POST server side')
+    console.log('successful newEvent POST server side')
   })
   .catch(error => {
     console.log('error in addEvent POST server side', error)

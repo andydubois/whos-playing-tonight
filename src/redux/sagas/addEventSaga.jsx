@@ -19,7 +19,7 @@ function* getVenues(action) {
 function* addShow(action) {
   console.log("client side addShow POST", action);
   try {
-    let response = yield axios.post(`/api/addShow`);
+    let response = yield axios.post(`/api/addShow`, action.payload);
     console.log('addEvent saga response', response.data);
     yield put ({
       type: "FETCH_SHOWS"

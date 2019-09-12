@@ -11,8 +11,8 @@ class AddShowsPage extends Component {
       showDate: "",
       doorTime: "",
       showTime: "",
-      venueId: "",
-      bandId: ""
+      venueId: 0,
+      bandId: 0
     },
     address: {
       numberStreet: "",
