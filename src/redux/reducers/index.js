@@ -11,6 +11,7 @@ import bandDetailsReducer from './bandDetailsReducer'
 import pastShowReducer from './pastShowReducer'
 import futureShowReducer from './futureShowReducer'
 import venueReducer from './venueReducer'
+import allShowsReducer from './allShowsReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   pastShowReducer, //holds all past shows by band in database
   futureShowReducer, //holds all future shows by band in database
   venueReducer, //holds all venues within the database
+  allShowsReducer, //holds all shows from database
 });
 
 export default rootReducer;

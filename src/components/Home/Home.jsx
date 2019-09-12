@@ -25,9 +25,7 @@ class Home extends Component {
     return (
       <div>
         <h1>WHO'S PLAYING TONIGHT?</h1>
-        <h4>10 shows this month (static)</h4>
-        <h4>5 shows this week (static)</h4>
-        <h5>{this.props.store.homeReducer.length} show today</h5>
+        <h5>{this.props.store.homeReducer.length} shows to see!</h5>
         <ul>
           {this.props.store.homeReducer.map(show => {
             return (

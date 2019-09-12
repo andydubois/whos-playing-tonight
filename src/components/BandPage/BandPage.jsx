@@ -28,7 +28,7 @@ class BandPage extends Component {
             </div>
             <div class='col-6'>
               <h4>Add YouTube music link</h4>
-              <form onSubmit={this.handleSubmit}>
+              <form className="addShowForm" onSubmit={this.handleSubmit}>
                 <div className='form-group'>
                   <label>YouTube Link</label>
                   <input

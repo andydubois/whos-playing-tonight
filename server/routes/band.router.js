@@ -44,7 +44,7 @@ router.get("/futureShows/:id", rejectUnauthenticated, (req, res) => {
     SELECT "events".date, "events".id as event_id, "bands".band_name, "bands".id as band_id FROM "bands"
     JOIN "band_event" ON "bands".id="band_event".band_id
     JOIN "events" ON "band_event".event_id="events".id
-    WHERE "bands".id=$1 AND "events".date > CURRENT_DATE;`;
+    WHERE "bands".id=$1 AND "events".date >= CURRENT_DATE;`;
   pool
     .query(queryText, [req.params.id])
     .then(results => {

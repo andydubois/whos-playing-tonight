@@ -6,13 +6,12 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * GET route template
  */
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/allShows", rejectUnauthenticated, (req, res) => {
   const queryText = `
   SELECT "bands".band_name, "events".date, "events".id FROM "events"
   JOIN "band_event" ON "events".id="band_event".event_id
   JOIN "bands" ON "band_event".band_id="bands".id
-  WHERE "events".date > CURRENT_DATE
-  ORDER BY "events".date DESC;`;
+  ORDER BY "events".date DESC`;
   pool
     .query(queryText)
     .then(results => {
