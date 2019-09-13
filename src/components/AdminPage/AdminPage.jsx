@@ -13,6 +13,7 @@ import MusicVideo from "@material-ui/icons/MusicVideo";
 import Navigation from "@material-ui/icons/Navigation";
 import Check from "@material-ui/icons/Check";
 import AdminPageList from "../AdminPageList/AdminPageList"
+import AdminBandList from "../AdminBandList/AdminBandList"
 
 class Admin extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class Admin extends Component {
   render() {
     return (
       <Paper>
+        <h2>All Shows</h2>
         <Table>
           <TableHead>
             <TableRow>
@@ -39,6 +41,20 @@ class Admin extends Component {
           <TableBody>
             {this.props.store.allShowsReducer.map(show => {
               return <AdminPageList show={show} />;
+            })}
+          </TableBody>
+        </Table>
+        <h2>All Bands</h2>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Band</TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.props.store.viewAddBandsReducer.map(band => {
+              return <AdminBandList band={band} />;
             })}
           </TableBody>
         </Table>

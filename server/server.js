@@ -16,6 +16,7 @@ const viewAddRouter = require('./routes/viewAdd.router');
 const bandDetailRouter = require('./routes/band.router');
 const addShowRouter = require('./routes/addShow.router');
 const adminRouter = require('./routes/admin.router')
+const editRouter = require('./routes/editShow.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -36,6 +37,7 @@ app.use('/api/viewAdd', viewAddRouter)
 app.use('/api/band', bandDetailRouter)
 app.use('/api/addShow', addShowRouter)
 app.use('/api/admin', adminRouter)
+app.use('/api/editShow', editRouter)
 
 // Serve static files
 app.use(express.static('build'));
