@@ -4,7 +4,6 @@ import Moment from "react-moment";
 
 //Material UI components
 import Button from "@material-ui/core/Button";
-import { throwStatement } from "@babel/types";
 
 class EditShowPage extends Component {
   state = {
@@ -15,7 +14,7 @@ class EditShowPage extends Component {
       showTime: "",
       venueId: 0,
       bandId: 0,
-      bandEventId: this.props.store.eventDetailsReducer.band_event_id,
+      band_event_id: 0,
       eventId: this.props.match.params.id
     },
     address: {
@@ -44,6 +43,13 @@ class EditShowPage extends Component {
       type: "FETCH_EVENT_DETAILS",
       payload: this.props.match.params.id
     });
+    this.setState({
+      ...this.state,
+      showInfo: {
+        ...this.state.showInfo,
+        band_event_id: this.props.store.eventDetailsReducer.band_event_id
+      }
+    });
   }
 
   getVenues() {
@@ -67,7 +73,7 @@ class EditShowPage extends Component {
     });
     console.log(this.state);
   };
-
+  //conditional rendering for new venue form
   showVenueForm = () => {
     this.setState({ newAddress: !this.state.newAddress });
   };
@@ -79,13 +85,14 @@ class EditShowPage extends Component {
       </Moment>
     );
     let doorTime = `0${this.props.store.eventDetailsReducer.time_doors}`;
-    console.log(doorTime);
+    console.log(this.props.store.eventDetailsReducer.band_event_id);
+    console.log('console log of State', this.state)
     let showTime = `0${this.props.store.eventDetailsReducer.time_show}`;
     let venueId = this.props.store.eventDetailsReducer.venue_id;
 
     return (
       <div>
-        <h1>Add New Show</h1>
+        <h1>Edit Show Details</h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>
           <div className='form-group'>
             <label>Date of Show</label>
@@ -150,77 +157,7 @@ class EditShowPage extends Component {
               {this.props.store.eventDetailsReducer.location_name}
             </small>
           </div>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={this.showVenueForm}>
-            {this.state.newAddress ? "Hide Form" : "Add New Venue"}
-          </Button>
-          <div className={this.state.newAddress ? null : "hidden"}>
-            <form className='addShowForm'>
-              <div className='form-group'>
-                <label>
-                  If venue is not in dropdown, please enter address and venue
-                  name below, submit it, and then select it from the dropdown
-                  above.
-                </label>
-                <small className='form-text text-muted'>
-                  Give venue a name
-                </small>
 
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Venue name here'
-                  onChange={event => this.handleChange("Street", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>Street and #</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='123 Fake St'
-                  onChange={event => this.handleChange("Street", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>City</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Fakesville'
-                  onChange={event => this.handleChange("City", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>State</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='MN'
-                  onChange={event => this.handleChange("State", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>Zip Code</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='55555'
-                  onChange={event => this.handleChange("zip", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <Button type='submit' variant='contained' color='primary'>
-                Submit New Venue
-              </Button>
-            </form>
-          </div>
           <div className='form-group'>
             <label>Band Selection</label>
             <select
@@ -249,6 +186,74 @@ class EditShowPage extends Component {
             Submit Edits
           </Button>
         </form>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={this.showVenueForm}>
+          {this.state.newAddress ? "Hide Form" : "Add New Venue"}
+        </Button>
+        <div className={this.state.newAddress ? null : "hidden"}>
+          <form className='addShowForm'>
+            <div className='form-group'>
+              <label>
+                If venue is not in dropdown, please enter address and venue name
+                below, submit it, and then select it from the dropdown above.
+              </label>
+              <small className='form-text text-muted'>Give venue a name</small>
+
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Venue name here'
+                onChange={event => this.handleChange("Street", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>Street and #</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='123 Fake St'
+                onChange={event => this.handleChange("Street", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>City</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Fakesville'
+                onChange={event => this.handleChange("City", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>State</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='MN'
+                onChange={event => this.handleChange("State", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>Zip Code</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='55555'
+                onChange={event => this.handleChange("zip", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <Button type='submit' variant='contained' color='primary'>
+              Submit New Venue
+            </Button>
+          </form>
+        </div>
       </div>
     );
   }
