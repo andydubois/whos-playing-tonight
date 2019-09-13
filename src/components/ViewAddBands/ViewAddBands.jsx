@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ViewAddList from "../ViewAddList/ViewAddList";
 import Button from "@material-ui/core/Button";
-import "./ViewAddBands.css";
+
 
 class ViewAddBands extends Component {
   state = {
