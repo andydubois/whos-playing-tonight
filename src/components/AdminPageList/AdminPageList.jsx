@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
+import { withRouter } from "react-router-dom";
 
 //Material UI Components
 import Table from "@material-ui/core/Table";
@@ -25,6 +26,14 @@ class AdminPageList extends Component {
     });
   }
 
+  goToEditPage = () => {
+    this.props.dispatch({
+      type: "FETCH_EVENT_DETAILS",
+      payload: this.props.show.id
+    });
+    this.props.history.push(`/editShow/${this.props.show.id}`);
+  };
+
   render() {
     return (
       <TableRow>
@@ -36,7 +45,10 @@ class AdminPageList extends Component {
           <Button variant='contained' color='danger'>
             Delete
           </Button>
-          <Button variant='contained' color='secondary'>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={this.goToEditPage}>
             Edit
           </Button>
         </TableCell>
@@ -45,4 +57,4 @@ class AdminPageList extends Component {
   }
 }
 
-export default connect()(AdminPageList);
+export default withRouter(connect()(AdminPageList));

@@ -8,6 +8,7 @@ import viewAddBandsSaga from './viewAddBandsSaga'
 import bandPageSaga from './bandPageSaga'
 import addEventSaga from './addEventSaga'
 import allShowsSaga from './allShowsSaga'
+import editEventSaga from './editEventSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     bandPageSaga(),
     addEventSaga(),
     allShowsSaga(),
+    editEventSaga()
   ]);
 }

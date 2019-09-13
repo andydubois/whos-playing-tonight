@@ -33,52 +33,50 @@ class RegisterPage extends Component {
     return (
       <div>
         {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
+          <h2 className='alert' role='alert'>
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
+        <form className='loginForm' onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
-            <label htmlFor="username">
+            <label htmlFor='username'>
               Username:
               <input
-                type="text"
-                name="username"
+                type='text'
+                name='username'
                 value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+                onChange={this.handleInputChangeFor("username")}
               />
             </label>
           </div>
           <div>
-            <label htmlFor="password">
+            <label htmlFor='password'>
               Password:
               <input
-                type="password"
-                name="password"
+                type='password'
+                name='password'
                 value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
+                onChange={this.handleInputChangeFor("password")}
               />
             </label>
           </div>
           <div>
             <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
+              className='register'
+              type='submit'
+              name='submit'
+              value='Register'
             />
           </div>
         </form>
         <center>
           <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
+            type='button'
+            className='link-button'
+            onClick={() => {
+              this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
+            }}>
             Login
           </button>
         </center>

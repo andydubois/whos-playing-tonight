@@ -20,6 +20,7 @@ import AddShowPage from '../AddShowPage/AddShowPage'
 import AdminPage from '../AdminPage/AdminPage'
 import EventPage from '../EventPage/EventPage'
 import BandPage from '../BandPage/BandPage'
+import EditShowPage from '../EditShowPage/EditShowPage'
 
 import "./bootstrap-1.css";
 import './App.css';
@@ -52,7 +53,9 @@ class App extends Component {
             <ProtectedRoute exact path='/addShow' component={AddShowPage} />
             <ProtectedRoute exact path='/admin' component={AdminPage} />
             <ProtectedRoute exact path='/event/:id' component={EventPage} />
+            <ProtectedRoute exact path='/editShow/:id' component={EditShowPage} />
             <ProtectedRoute exact path='/bands/:id' component={BandPage} />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

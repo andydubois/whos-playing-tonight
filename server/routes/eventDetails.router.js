@@ -10,7 +10,7 @@ const {
  */
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
-  SELECT "bands".band_name, "locations".location_name, "locations".city, "locations".number_street, "locations".state, "locations".zip_code, "events".date, "events".id, "events".time_doors, "events".time_show FROM "events"
+  SELECT "bands".band_name, "band_event".id as band_event_id, "locations".id as venue_id, "locations".location_name, "locations".city, "locations".number_street, "locations".state, "locations".zip_code, "events".date, "events".id, "events".time_doors, "events".time_show FROM "events"
   JOIN "band_event" ON "events".id="band_event".event_id
   JOIN "locations" ON "events".locations_id="locations".id
   JOIN "bands" ON "band_event".band_id="bands".id
