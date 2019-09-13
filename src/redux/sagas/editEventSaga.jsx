@@ -33,7 +33,7 @@ function* addShow2(action) {
 
 function* watchMe() {
   yield takeEvery("EDIT_SHOW", addShow);
-  yield takeEvery("EDIT_SHOW", addShow2);
+  // yield takeEvery("EDIT_SHOW", addShow2);
 }
 
 export default watchMe;

@@ -9,9 +9,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import MusicVideo from "@material-ui/icons/MusicVideo";
-import Navigation from "@material-ui/icons/Navigation";
-import Check from "@material-ui/icons/Check";
 import AdminPageList from "../AdminPageList/AdminPageList"
 import AdminBandList from "../AdminBandList/AdminBandList"
 
