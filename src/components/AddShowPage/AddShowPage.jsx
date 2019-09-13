@@ -18,15 +18,24 @@ class AddShowsPage extends Component {
       numberStreet: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      venue_name: ""
     }
   };
 
-  submitNewShow = (event) => {
+  submitNewShow = event => {
     event.preventDefault();
     this.props.dispatch({
       type: "ADD_SHOW",
       payload: this.state.showInfo
+    });
+  };
+
+  submitNewVenue = event => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: "ADD_VENUE",
+      payload: this.state.address
     })
   }
 
@@ -112,77 +121,7 @@ class AddShowsPage extends Component {
               })}
             </select>
           </div>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={this.showVenueForm}>
-            {this.state.newAddress ? "Hide Form" : "Add New Venue"}
-          </Button>
-          <div className={this.state.newAddress ? null : "hidden"}>
-            <form className='addShowForm'>
-              <div className='form-group'>
-                <label>
-                  If venue is not in dropdown, please enter address and venue
-                  name below, submit it, and then select it from the dropdown
-                  above.
-                </label>
-                <small className='form-text text-muted'>
-                  Give venue a name
-                </small>
 
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Venue name here'
-                  onChange={event => this.handleChange("Street", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>Street and #</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='123 Fake St'
-                  onChange={event => this.handleChange("Street", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>City</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Fakesville'
-                  onChange={event => this.handleChange("City", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>State</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='MN'
-                  onChange={event => this.handleChange("State", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <div className='form-group'>
-                <small className='form-text text-muted'>Zip Code</small>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='55555'
-                  onChange={event => this.handleChange("zip", event)}
-                  disabled={this.state.showInfo.venueId === "" ? false : true}
-                />
-              </div>
-              <Button type='submit' variant='contained' color='primary'>
-                Submit New Venue
-              </Button>
-            </form>
-          </div>
           <div className='form-group'>
             <label>Band Selection</label>
             <select
@@ -207,6 +146,74 @@ class AddShowsPage extends Component {
             Submit Event
           </Button>
         </form>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={this.showVenueForm}>
+          {this.state.newAddress ? "Hide Form" : "Add New Venue"}
+        </Button>
+        <div className={this.state.newAddress ? null : "hidden"}>
+          <form className='addShowForm' onSubmit={this.submitNewVenue}>
+            <div className='form-group'>
+              <label>
+                If venue is not in dropdown, please enter address and venue name
+                below, submit it, and then select it from the dropdown above.
+              </label>
+              <small className='form-text text-muted'>Give venue a name</small>
+
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Venue name here'
+                onChange={event => this.handleChange("venue_name", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>Street and #</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='123 Fake St'
+                onChange={event => this.handleChange("Street", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>City</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='Fakesville'
+                onChange={event => this.handleChange("City", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>State</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='MN'
+                onChange={event => this.handleChange("State", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <div className='form-group'>
+              <small className='form-text text-muted'>Zip Code</small>
+              <input
+                type='text'
+                className='form-control'
+                placeholder='55555'
+                onChange={event => this.handleChange("zip", event)}
+                disabled={this.state.showInfo.venueId === "" ? false : true}
+              />
+            </div>
+            <Button type='submit' variant='contained' color='primary'>
+              Submit New Venue
+            </Button>
+          </form>
+        </div>
       </div>
     );
   }

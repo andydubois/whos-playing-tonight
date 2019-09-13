@@ -26,7 +26,7 @@ class Admin extends Component {
   render() {
     return (
       <Paper>
-        <h2>All Shows</h2>
+        <h2></h2>
         <Table>
           <TableHead>
             <TableRow>

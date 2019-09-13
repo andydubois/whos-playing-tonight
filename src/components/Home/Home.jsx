@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+//Material UI Components
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+
 
 //Components
-import HomeEventList from "../HomeEventList/HomeEventList"
+import HomeEventList from "../HomeEventList/HomeEventList";
 
 class Home extends Component {
   componentDidMount() {
@@ -17,22 +26,27 @@ class Home extends Component {
     });
   }
 
-
-
-
-
   render() {
     return (
       <div>
-        <h1>WHO'S PLAYING TONIGHT?</h1>
-        <h5>{this.props.store.homeReducer.length} shows to see!</h5>
-        <ul>
-          {this.props.store.homeReducer.map(show => {
-            return (
-                <HomeEventList show={show} history={this.props.history}/>
-            );
-          })}
-        </ul>
+        <h1>Welcome!</h1>
+        <Paper>
+          <h5>{this.props.store.homeReducer.length} shows to see!</h5>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Band</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.props.store.homeReducer.map(show => {
+                return <HomeEventList show={show} />;
+              })}
+            </TableBody>
+          </Table>
+        </Paper>
       </div>
     );
   }

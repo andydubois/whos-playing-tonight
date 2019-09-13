@@ -29,10 +29,24 @@ function* addShow(action) {
   }
 }
 
+function* addVenue(action) {
+  console.log('client side addVenue POST', action);
+  try {
+    let response = yield axios.post(`/api/addShow/AddVenue`, action.payload);
+    console.log('addVenue saga response', response.data);
+    yield put ({
+      type: "FETCH_VENUES"
+    });
+  } catch (error) {
+    console.log('error in addVenue POST client side', error);
+  }
+}
+
 
 function* watchMe() {
   yield takeEvery("FETCH_VENUES", getVenues);
   yield takeEvery("ADD_SHOW", addShow);
+  yield takeEvery("ADD_VENUE", addVenue)
 }
 
 
