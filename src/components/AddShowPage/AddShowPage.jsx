@@ -36,8 +36,8 @@ class AddShowsPage extends Component {
     this.props.dispatch({
       type: "ADD_VENUE",
       payload: this.state.address
-    })
-  }
+    });
+  };
 
   componentDidMount() {
     this.getVenues();
@@ -59,6 +59,16 @@ class AddShowsPage extends Component {
   handleChange = (propertyName, event) => {
     this.setState({
       showInfo: {
+        ...this.state.showInfo,
+        [propertyName]: event.target.value
+      }
+    });
+    console.log(this.state);
+  };
+
+  handleAddressChange = (propertyName, event) => {
+    this.setState({
+      address: {
         ...this.state.showInfo,
         [propertyName]: event.target.value
       }
@@ -165,7 +175,9 @@ class AddShowsPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='Venue name here'
-                onChange={event => this.handleChange("venue_name", event)}
+                onChange={event =>
+                  this.handleAddressChange("venue_name", event)
+                }
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -175,7 +187,7 @@ class AddShowsPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='123 Fake St'
-                onChange={event => this.handleChange("Street", event)}
+                onChange={event => this.handleAddressChange("street", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -185,7 +197,7 @@ class AddShowsPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='Fakesville'
-                onChange={event => this.handleChange("City", event)}
+                onChange={event => this.handleAddressChange("city", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -195,7 +207,7 @@ class AddShowsPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='MN'
-                onChange={event => this.handleChange("State", event)}
+                onChange={event => this.handleAddressChange("state", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -205,7 +217,7 @@ class AddShowsPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='55555'
-                onChange={event => this.handleChange("zip", event)}
+                onChange={event => this.handleAddressChange("zip", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>

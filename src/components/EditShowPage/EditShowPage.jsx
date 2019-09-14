@@ -205,7 +205,7 @@ class EditShowPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='Venue name here'
-                onChange={event => this.handleChange("Street", event)}
+                onChange={event => this.handleChange("venueName", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -215,7 +215,7 @@ class EditShowPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='123 Fake St'
-                onChange={event => this.handleChange("Street", event)}
+                onChange={event => this.handleChange("street", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -225,7 +225,7 @@ class EditShowPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='Fakesville'
-                onChange={event => this.handleChange("City", event)}
+                onChange={event => this.handleChange("city", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
@@ -235,7 +235,7 @@ class EditShowPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='MN'
-                onChange={event => this.handleChange("State", event)}
+                onChange={event => this.handleChange("state", event)}
                 disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
