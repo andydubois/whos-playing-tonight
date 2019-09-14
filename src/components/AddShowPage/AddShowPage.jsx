@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 //Material UI components
 import Button from "@material-ui/core/Button";
+import { CssBaseline } from "@material-ui/core";
 
 class AddShowsPage extends Component {
   state = {
@@ -83,6 +84,7 @@ class AddShowsPage extends Component {
   render() {
     return (
       <div>
+        <CssBaseline />
         <h1>Add New Show</h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>
           <div className='form-group'>

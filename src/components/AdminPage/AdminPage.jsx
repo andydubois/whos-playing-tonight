@@ -7,10 +7,9 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import AdminPageList from "../AdminPageList/AdminPageList"
 import AdminBandList from "../AdminBandList/AdminBandList"
+import { CssBaseline } from "@material-ui/core";
 
 class Admin extends Component {
   componentDidMount() {
@@ -25,7 +24,8 @@ class Admin extends Component {
 
   render() {
     return (
-      <Paper>
+      <div>
+        <CssBaseline />
         <h2></h2>
         <Table>
           <TableHead>
@@ -55,7 +55,7 @@ class Admin extends Component {
             })}
           </TableBody>
         </Table>
-      </Paper>
+      </div>
     );
   }
 }

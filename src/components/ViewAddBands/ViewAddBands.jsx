@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ViewAddList from "../ViewAddList/ViewAddList";
+
+//Material UI Components
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
+import { CssBaseline } from "@material-ui/core";
 
 
 class ViewAddBands extends Component {
@@ -40,20 +48,33 @@ class ViewAddBands extends Component {
   render() {
     return (
       <div>
+        <CssBaseline />
         <h1>View/Add Bands</h1>
-        <div class='container'>
-          <div class='row'>
-            <div class='col'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col'>
               <h4>List of Bands</h4>
-              {this.props.store.viewAddBandsReducer.map(band => {
-                return <ViewAddList band={band} />;
-              })}
+              <p></p>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      (Click band for further details on each)
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.store.viewAddBandsReducer.map(band => {
+                    return <ViewAddList band={band} />;
+                  })}
+                </TableBody>
+              </Table>
             </div>
-            <div class='col-6'>
+            <div className='col-6'>
               <h4>Add Band</h4>
               {/* <TextField label="New Band Here" fullWidth/>
               <TextField label="YT link to music here"/> */}
-              <form className="newBandForm" onSubmit={this.handleSubmit}>
+              <form className='newBandForm' onSubmit={this.handleSubmit}>
                 <div className='form-group'>
                   <label>Band</label>
                   <input
@@ -64,7 +85,8 @@ class ViewAddBands extends Component {
                   />
                   <small className='form-text text-muted'>
                     -Enter band name above. <br />
-                    -Click on band names to travel to band pages and add music links for each.
+                    -Click on band names to travel to band pages and add music
+                    links for each.
                   </small>
                 </div>
                 {/* <div className='form-group'>

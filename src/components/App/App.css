@@ -65,3 +65,7 @@ input {
 .loginForm {
     width: auto;
 }
+
+.homeTable {
+    width: 75%;
+}

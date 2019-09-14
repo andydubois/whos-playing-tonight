@@ -9,6 +9,7 @@ import bandPageSaga from './bandPageSaga'
 import addEventSaga from './addEventSaga'
 import allShowsSaga from './allShowsSaga'
 import editEventSaga from './editEventSaga'
+import adminSaga from './adminSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,6 +20,7 @@ import editEventSaga from './editEventSaga'
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
+    adminSaga(),
     loginSaga(),
     registrationSaga(),
     userSaga(),

@@ -31,6 +31,7 @@ class EditShowPage extends Component {
       type: "EDIT_SHOW",
       payload: this.state.showInfo
     });
+    this.props.history.push("/admin")
   };
 
   componentDidMount() {
