@@ -52,7 +52,7 @@ class ViewAddBands extends Component {
 
   render() {
     return (
-      <div>
+      <div className='react-transition swipe-right'>
         <CssBaseline />
         <h1>View/Add Bands</h1>
         <div className='container'>

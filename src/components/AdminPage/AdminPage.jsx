@@ -24,7 +24,7 @@ class Admin extends Component {
 
   render() {
     return (
-      <div>
+      <div className='react-transition swipe-right'>
         <CssBaseline />
         <h2>ADMIN</h2>
         <Table>

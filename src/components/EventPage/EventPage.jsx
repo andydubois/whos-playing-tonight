@@ -85,7 +85,7 @@ class EventPage extends Component {
     }
 
     return (
-      <div>
+      <div className='react-transition swipe-right'>
         <CssBaseline />
         <h1>EVENT PAGE</h1>
 

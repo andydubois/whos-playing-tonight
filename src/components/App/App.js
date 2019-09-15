@@ -5,10 +5,14 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+
+// Be sure to include styles at some point, probably during your bootstraping
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import { connect } from "react-redux";
 
-import Nav from "../Nav/Nav";
+// import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -25,6 +29,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 import "./bootstrap-1.css";
 import "./App.css";
+import "./react-transitions.css";
 
 const theme = createMuiTheme({
   palette: {
@@ -50,12 +55,40 @@ class App extends Component {
   }
 
   render() {
+    let location = this.props.location
     return (
       <MuiThemeProvider theme={theme}>
         <Router>
           <div>
-            <Nav />
-            <Switch>
+            <SideNav
+                onSelect={(selected) => {
+                    const to = '/' + selected;
+                    if (location.pathname !== to) {
+                        this.props.history.push(to);
+                    }
+                }}
+            >
+                <SideNav.Toggle />
+                <SideNav.Nav defaultSelected="home">
+                    <NavItem eventKey="home">
+                        <NavIcon>
+                            <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                        </NavIcon>
+                        <NavText>
+                            Home
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="addShow">
+                        <NavIcon>
+                            <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} />
+                        </NavIcon>
+                        <NavText>
+                            Add Show
+                        </NavText>
+                    </NavItem>
+                </SideNav.Nav>
+            </SideNav>
+            <Switch className='transition-container'>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from='/' to='/home' />
               {/* Visiting localhost:3000/about will show the about page.
