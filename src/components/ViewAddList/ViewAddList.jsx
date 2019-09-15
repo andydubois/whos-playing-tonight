@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+//Material UI Components
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import Button from "@material-ui/core/Button";
+
 class ViewAddList extends Component {
   getBandDetails = action => {
     this.props.dispatch({
@@ -11,7 +16,7 @@ class ViewAddList extends Component {
     this.props.dispatch({
       type: "FETCH_PAST_SHOWS",
       payload: this.props.band.id
-    })
+    });
     this.props.dispatch({
       type: "FETCH_FUTURE_SHOWS",
       payload: this.props.band.id
@@ -21,9 +26,9 @@ class ViewAddList extends Component {
 
   render() {
     return (
-      <li key={this.props.band.id} onClick={this.getBandDetails}>
-        {this.props.band.band_name}
-      </li>
+      <TableRow onClick={this.getBandDetails} key={this.props.band.id}>
+        <TableCell key={this.props.band.id}>{this.props.band.band_name}</TableCell>
+      </TableRow>
     );
   }
 }

@@ -32,7 +32,7 @@ class HomeEventList extends Component {
 
 
     return (
-      <TableRow onClick={this.showDetailsClick}>
+      <TableRow onClick={this.showDetailsClick} key={this.props.show.id}>
         <TableCell>{this.props.show.band_name}</TableCell>
         <TableCell>
           <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
