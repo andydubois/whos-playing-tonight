@@ -4,11 +4,13 @@ import ShowList from "../ShowList/ShowList";
 
 //Material UI Components
 import Button from "@material-ui/core/Button";
+import { CssBaseline } from "@material-ui/core";
 
 class BandPage extends Component {
   render() {
     return (
       <div>
+        <CssBaseline />
         <h1>Band Page</h1>
         <div className='container'>
           <div className='row'>
@@ -26,7 +28,7 @@ class BandPage extends Component {
                 })}
               </ul>
             </div>
-            <div class='col-6'>
+            <div className='col-6'>
               <h4>Add YouTube music link</h4>
               <form className="addShowForm" onSubmit={this.handleSubmit}>
                 <div className='form-group'>

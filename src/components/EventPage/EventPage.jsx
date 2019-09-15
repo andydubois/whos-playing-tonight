@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import MusicVideo from "@material-ui/icons/MusicVideo";
 import Navigation from "@material-ui/icons/Navigation";
 import Check from "@material-ui/icons/Check";
+import { CssBaseline } from "@material-ui/core";
 
 class EventPage extends Component {
   state = {
@@ -85,6 +86,7 @@ class EventPage extends Component {
 
     return (
       <div>
+        <CssBaseline />
         <h1>EVENT PAGE</h1>
 
         <Paper>

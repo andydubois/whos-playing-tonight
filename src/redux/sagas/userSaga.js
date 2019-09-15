@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -24,8 +24,23 @@ function* fetchUser() {
   }
 }
 
+function* fetchHistory(action) {
+  try {
+    let response = yield axios.get(`/api/user/history/${action.payload}`);
+    console.log('GET all past shows for user id:', response.data);
+    //gives history to profile page
+    yield put ({
+      type: "SET_USER_HISTORY",
+      payload: response.data
+    });
+  } catch (error) {
+    console.log("error in user history GET client side", error)
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeEvery('FETCH_HISTORY', fetchHistory)
 }
 
 export default userSaga;

@@ -26,7 +26,7 @@ class Admin extends Component {
     return (
       <div>
         <CssBaseline />
-        <h2></h2>
+        <h2>ADMIN</h2>
         <Table>
           <TableHead>
             <TableRow>
