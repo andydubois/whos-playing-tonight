@@ -9,6 +9,7 @@ import {
 import { connect } from "react-redux";
 
 import Nav from "../Nav/Nav";
+import NavTop from "../NavTop/NavTop"
 import Footer from "../Footer/Footer";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -56,7 +57,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Router>
           <div>
-            <Nav />
+            <NavTop />
             <Switch className='transition-container'>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from='/' to='/home' />
