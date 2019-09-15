@@ -11,11 +11,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import { CssBaseline } from "@material-ui/core";
 
-
 class ViewAddBands extends Component {
   state = {
-    band: "",
-    ytLink: ""
+    band: ""
   };
 
   componentDidMount() {
@@ -43,7 +41,14 @@ class ViewAddBands extends Component {
       type: "ADD_BAND",
       payload: this.state
     });
+    this.clearState();
   };
+
+  clearState() {
+    this.setState({
+      band: ""
+    });
+  }
 
   render() {
     return (
@@ -78,6 +83,7 @@ class ViewAddBands extends Component {
                 <div className='form-group'>
                   <label>Band</label>
                   <input
+                    value={this.state.band}
                     type='text'
                     className='form-control'
                     placeholder='Band'

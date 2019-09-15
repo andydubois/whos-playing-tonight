@@ -17,7 +17,7 @@ import { put, takeEvery } from "redux-saga/effects";
 function* deleteBand(action) {
   console.log("client side band DELETE", action);
   try {
-    let response = yield axios.delete(`/api/admin/bandDelete/${action.payload.id}`);
+    yield axios.delete(`/api/admin/bandDelete/${action.payload.id}`);
     console.log(`deleteBand saga response deleting:${action.payload.band_name}`);
     yield put ({
       type: "FETCH_BANDS"

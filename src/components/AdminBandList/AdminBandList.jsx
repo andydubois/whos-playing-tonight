@@ -26,7 +26,7 @@ class AdminBandList extends Component {
           type: "DELETE_BAND",
           payload: this.props.band
         });
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("The band will rock no more!", {
           icon: "success"
         });
       } else {
