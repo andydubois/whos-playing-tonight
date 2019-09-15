@@ -83,7 +83,7 @@ class AddShowsPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='react-transition swipe-right'>
         <CssBaseline />
         <h1>Add New Show</h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>

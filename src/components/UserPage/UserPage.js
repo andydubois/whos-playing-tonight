@@ -36,7 +36,7 @@ getHistory = () => {
 
   render() {
     return (
-      <div>
+      <div className='react-transition swipe-right'>
         <CssBaseline />
         <h1 id='welcome'>Welcome, {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>

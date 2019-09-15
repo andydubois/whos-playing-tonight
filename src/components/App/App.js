@@ -25,6 +25,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 import "./bootstrap-1.css";
 import "./App.css";
+import "./react-transitions.css";
 
 const theme = createMuiTheme({
   palette: {
@@ -50,12 +51,13 @@ class App extends Component {
   }
 
   render() {
+    let location = this.props.location
     return (
       <MuiThemeProvider theme={theme}>
         <Router>
           <div>
             <Nav />
-            <Switch>
+            <Switch className='transition-container'>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from='/' to='/home' />
               {/* Visiting localhost:3000/about will show the about page.

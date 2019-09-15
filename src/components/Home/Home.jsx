@@ -45,7 +45,7 @@ class Home extends Component {
     const {classes} = this.props
 
     return (
-      <div className={classes.root}>
+      <div className='react-transition swipe-right'>
         <CssBaseline />
         <h1>Welcome!</h1>
         <h5>{this.props.store.homeReducer.length} shows to see!</h5>

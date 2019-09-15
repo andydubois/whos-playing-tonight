@@ -9,7 +9,7 @@ import { CssBaseline } from "@material-ui/core";
 class BandPage extends Component {
   render() {
     return (
-      <div>
+      <div className="react-transition swipe-right">
         <CssBaseline />
         <h1>Band Page</h1>
         <div className='container'>
