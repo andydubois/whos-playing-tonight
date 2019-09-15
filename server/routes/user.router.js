@@ -47,7 +47,7 @@ router.post("/logout", (req, res) => {
 router.get("/history/:id", rejectUnauthenticated, (req, res) => {
   console.log('req.body is:', req.params.id);
   const queryText = `
-  SELECT bands.band_name, events.date, events.id as event_id FROM events
+  SELECT bands.band_name, events.date, events.id FROM events
   JOIN band_event ON events.id=band_event.event_id
   JOIN bands ON band_event.band_id=bands.id
   JOIN user_event ON events.id=user_event.event_id

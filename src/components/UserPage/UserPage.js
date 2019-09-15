@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LogOutButton from "../LogOutButton/LogOutButton";
+import HomeEventList from "../HomeEventList/HomeEventList"
 
 //Material UI Components
 import Table from "@material-ui/core/Table";
@@ -17,13 +18,14 @@ import Button from "@material-ui/core/Button";
 class UserPage extends Component {
 
 componentDidMount() {
+   this.props.dispatch({
+     type: "FETCH_USER"
+   });
   this.getHistory();
 }
 
 getHistory = () => {
-  this.props.dispatch({
-    type: "FETCH_USER"
-  });
+
   this.props.dispatch({
     type: "FETCH_HISTORY",
     payload: this.props.store.user.id
@@ -44,12 +46,14 @@ getHistory = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>(Click band for further details on each)</TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {this.props.store.userHistoryReducer.map(show => {
-                return;
+                return <HomeEventList show={show} />;
               })}
             </TableBody>
           </Table>
