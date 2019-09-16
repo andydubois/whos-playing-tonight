@@ -34,6 +34,13 @@ class AdminPageList extends Component {
     this.props.history.push(`/editShow/${this.props.show.id}`);
   };
 
+  deleteShow = action => {
+    this.props.dispatch({
+      type: "DELETE_ADMIN_SHOW",
+      payload: this.props.show
+    });
+  };
+
   render() {
     return (
       <TableRow>
@@ -42,7 +49,7 @@ class AdminPageList extends Component {
           <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
         </TableCell>
         <TableCell>
-          <Button variant='contained' color='secondary'>
+          <Button variant='contained' color='secondary' onClick={this.deleteShow}>
             Delete
           </Button>
           <Button

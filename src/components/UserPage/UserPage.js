@@ -12,6 +12,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { CssBaseline } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {Grid} from "@material-ui/core"
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -39,6 +40,7 @@ class UserPage extends Component {
       payload: this.props.store.user.id
     });
   };
+
 
   render() {
     return (

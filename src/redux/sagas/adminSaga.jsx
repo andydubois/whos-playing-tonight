@@ -27,8 +27,21 @@ function* deleteBand(action) {
   }
 }
 
+function* deleteShow(action) {
+  try {
+    yield axios.delete(`/api/admin/deleteShow/${action.payload.id}`);
+    console.log(`delete show saga response`, action.payload);
+    yield put({
+      type: "FETCH_ALL_SHOWS",
+    });
+  } catch (error) {
+    console.log("error in the admin deleteShow DELETE client side", error);
+  }
+}
+
 function* watchMe() {
   yield takeEvery("DELETE_BAND", deleteBand);
+  yield takeEvery("DELETE_ADMIN_SHOW", deleteShow)
 }
 
 export default watchMe;

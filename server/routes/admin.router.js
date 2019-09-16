@@ -76,4 +76,66 @@ router.delete("/bandDelete/:id", async (req, res) => {
   }
 });
 
+router.delete("/deleteShow/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const connection = await pool.connect();
+  try {
+    //starts multi-state SQL "transaction"
+    await connection.query("BEGIN");
+    //deletes all band_event entries related to band
+    const band_eventQuery = `
+    DELETE FROM band_event WHERE event_id=$1`;
+    //deletes all entries in events table
+    const eventsQuery = `
+    DELETE FROM events WHERE id=$1`;
+    //delete all entries in user_event table
+    const user_eventQuery = `
+    DELETE FROM user_event WHERE event_id=$1`;
+
+    await connection.query(band_eventQuery, [id]);
+    await connection.query(user_eventQuery, [id]);
+    await connection.query(eventsQuery, [id]);
+    //successful end to "transaction"
+    await connection.query("COMMIT");
+    console.log("Successful DELETE of show at index", id);
+    res.sendStatus(201);
+  } catch (error) {
+    //reverts all statements in transaction
+    await connection.query("ROLLBACK");
+    console.log("error in server side show DELETE", error);
+    res.sendStatus(500);
+  } finally {
+    connection.release();
+  }
+});
+
+router.delete(`/deleteShow/:id`, (req, res) => {
+  console.log("i am the band deleter");
+  const band_eventQuery = `
+    DELETE FROM band_event WHERE event_id=$1;`;
+
+  pool
+    .query(band_eventQuery, [req.params.id])
+    .then(result => {
+      const eventQuery = `
+    DELETE FROM events WHERE id=$1;`;
+      pool
+        .query(eventQuery, [req.params.id])
+        .then(result => {
+          console.log("successful DELETE of admin Show in event table");
+        })
+        .catch(error => {
+          console.log("error in event table delete of band", error);
+          res.sendStatus(500);
+        });
+      res.sendStatus(200);
+      console.log("successful DELETE of show in band_event table");
+    })
+    .catch(error => {
+      console.log("error in band_event DELETE of show", error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

@@ -19,12 +19,11 @@ class UserCreatedTable extends Component {
   //   console.log(`/details/{this.props.movie.id}`);
   // };
 
-  showDetailsClick = (action) => {
+  deleteShow = (action) => {
     this.props.dispatch({
-      type: "FETCH_EVENT_DETAILS",
-      payload: this.props.show.id
+      type: "DELETE_USER_SHOW",
+      payload: this.props.show
     });
-    this.props.history.push(`/event/${this.props.show.id}`)
   }
 
   render() {
@@ -45,7 +44,7 @@ class UserCreatedTable extends Component {
             Show Details
           </Button>
           <Button
-            onClick={this.showDetailsClick}
+            onClick={this.deleteShow}
             variant='contained'
             color='secondary'>
             Delete Show
