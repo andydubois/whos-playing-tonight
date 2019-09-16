@@ -28,7 +28,7 @@ class Admin extends Component {
         <CssBaseline />
         <h2>ADMIN</h2>
         <br />
-        <h3>All Shows</h3>
+        <h5>All Shows</h5>
         <Table>
           <TableHead>
             <TableRow>
@@ -43,7 +43,7 @@ class Admin extends Component {
             })}
           </TableBody>
         </Table>
-        <h3>All Bands</h3>
+        <h5>All Bands</h5>
         <Table>
           <TableHead>
             <TableRow>

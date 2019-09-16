@@ -89,7 +89,6 @@ class EventPage extends Component {
         <CssBaseline />
         <h1>EVENT PAGE</h1>
 
-        <Paper>
           <Table>
             <TableHead>
               <TableRow>
@@ -131,7 +130,6 @@ class EventPage extends Component {
           <ul>{guestList}</ul>
           <Button onClick={this.rsvpForEvent}>RSVP</Button>
           <Button onClick={this.notGoingToEvent}>NOT GOING ANYMORE</Button>
-        </Paper>
       </div>
     );
   }

@@ -8,10 +8,20 @@
   src: url(../../font/gomarice_rockin_record.ttf);
 }
 
+@font-face {
+  font-family: truckin;
+  src: url(../../font/KeeponTruckin.ttf);
+}
+
+@font-face {
+  font-family: rounded;
+  src: url(../../font/Rounded_Elegance.ttf);
+}
+
 
 
 body {
-    font-family: "rockText" !important;
+    font-family: "rounded" !important;
     margin: 0px;
 }
 
@@ -21,12 +31,16 @@ body {
 }
 
 form {
-    background-color: #dbd5d5;
+    background-color: rgb(36, 38, 40);
+    color: white;
     width: 30%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
+}
+.text-muted {
+    color: white !important;
 }
 
 input {
@@ -91,11 +105,12 @@ input {
     width: 50%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .appHeader {
     font-family: "rockFont" !important;
     height: auto;
     padding-top: 50px;
     text-align: center;
+    color: white;
 }
 
 form {
@@ -104,4 +119,14 @@ form {
 
 .dropDownMenu {
     font-size: 15pt;
+}
+
+.MuiTableCell-body {
+    color: white !important;
+    font-family: 'rounded' !important;
+}
+
+.MuiTableCell-head {
+    color: white !important;
+    font-family: 'rounded' !important;
 }

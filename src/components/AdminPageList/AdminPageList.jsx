@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { withRouter } from "react-router-dom";
+import swal from "sweetalert";
 
 //Material UI Components
 import TableCell from "@material-ui/core/TableCell";
@@ -35,9 +36,27 @@ class AdminPageList extends Component {
   };
 
   deleteShow = action => {
-    this.props.dispatch({
-      type: "DELETE_ADMIN_SHOW",
-      payload: this.props.show
+    swal({
+      title: "Are you sure?",
+      text:
+        "Are you sure you wanted to permanently delete this show from the database?",
+      icon: "warning",
+      buttons: true,
+      buttons: ["Cancel", "Yes, delete the band"],
+      dangerMode: true,
+      className: "sweetAlert"
+    }).then(willDelete => {
+      if (willDelete) {
+        this.props.dispatch({
+          type: "DELETE_ADMIN_SHOW",
+          payload: this.props.show
+        });
+        swal("The band will rock no more!", {
+          icon: "success"
+        });
+      } else {
+        swal("No shows were hurt in the making of this alert.");
+      }
     });
   };
 
@@ -49,7 +68,10 @@ class AdminPageList extends Component {
           <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
         </TableCell>
         <TableCell>
-          <Button variant='contained' color='secondary' onClick={this.deleteShow}>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={this.deleteShow}>
             Delete
           </Button>
           <Button

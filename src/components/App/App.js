@@ -30,7 +30,7 @@ import "./react-transitions.css";
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "rockText",
+    fontFamily: "rockText"
   },
   palette: {
     primary: {
@@ -45,7 +45,7 @@ const theme = createMuiTheme({
       main: "#8b2635"
     },
     background: {
-      default: "#9575cd"
+      default: "rgb(58, 36, 98)"
     },
     fontFamily: {
       default: "impact"

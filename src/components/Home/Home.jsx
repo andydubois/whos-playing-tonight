@@ -49,7 +49,7 @@ class Home extends Component {
       <div className='react-transition swipe-right'>
         <CssBaseline />
         <h1>Who's Playing Tonight?</h1>
-        <h5>{this.props.store.homeReducer.length} shows to see!</h5>
+        <h5 className="homeHeader">{this.props.store.homeReducer.length} shows to see!</h5>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
