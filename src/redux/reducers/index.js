@@ -13,6 +13,7 @@ import futureShowReducer from './futureShowReducer'
 import venueReducer from './venueReducer'
 import allShowsReducer from './allShowsReducer'
 import userHistoryReducer from './historyUserReducer'
+import userCreatedReducer from './userCreatedReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   venueReducer, //holds all venues within the database
   allShowsReducer, //holds all shows from database
   userHistoryReducer, //holds user's past show history
+  userCreatedReducer, //holds all shows made by specific user
 });
 
 export default rootReducer;

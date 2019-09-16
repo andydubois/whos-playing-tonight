@@ -38,9 +38,24 @@ function* fetchHistory(action) {
   }
 }
 
+function* fetchCreatedByUser(action) {
+  try {
+    let response = yield axios.get(`/api/user/created/${action.payload}`);
+    console.log('GET all shows created by user id:', response.data)
+    yield put ({
+      type: "SET_CREATED_SHOWS",
+      payload: response.data
+    });
+} catch (error) {
+  console.log("error in the created by user GET client side", error)
+}
+
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeEvery('FETCH_HISTORY', fetchHistory)
+  yield takeEvery('FETCH_HISTORY', fetchHistory);
+  yield takeEvery('FETCH_CREATED', fetchCreatedByUser)
 }
 
 export default userSaga;

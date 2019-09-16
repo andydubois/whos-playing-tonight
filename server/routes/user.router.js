@@ -59,4 +59,17 @@ router.get("/history/:id", rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.get("/created/:id", rejectUnauthenticated, (req, res) => {
+  const queryText = `
+  SELECT "bands".band_name, "events".creator_id, "events".date, "events".id FROM events
+  JOIN band_event ON events.id=band_event.event_id
+  JOIN bands ON band_event.band_id=bands.id
+  WHERE events.creator_id=$1;`;
+  pool.query(queryText, [req.params.id]).then(results => {
+    res.send(results.rows);
+  }).catch(error => {
+    console.log("error in server side user created shows GET", error)
+  })
+})
+
 module.exports = router;

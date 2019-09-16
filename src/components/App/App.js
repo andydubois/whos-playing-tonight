@@ -29,19 +29,26 @@ import "./App.css";
 import "./react-transitions.css";
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: "rockText",
+  },
   palette: {
     primary: {
-      main: "#5e35b1"
+      light: "#5e35b1",
+      main: "#3f2377"
     },
     secondary: {
-      light: "#ffff72",
-      main: "#ffeb3b"
+      light: "#8b2635",
+      main: "#681C27"
+    },
+    error: {
+      main: "#8b2635"
     },
     background: {
       default: "#9575cd"
     },
-    default: {
-      default: "#d20101"
+    fontFamily: {
+      default: "impact"
     }
   }
 });

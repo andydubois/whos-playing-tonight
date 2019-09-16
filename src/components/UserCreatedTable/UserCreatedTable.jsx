@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 
-class HomeEventList extends Component {
+class UserCreatedTable extends Component {
   //retrieves details for movie with specified ID and saves in reducer
 
   // goToDetails = action => {
@@ -44,6 +44,12 @@ class HomeEventList extends Component {
             color='primary'>
             Show Details
           </Button>
+          <Button
+            onClick={this.showDetailsClick}
+            variant='contained'
+            color='secondary'>
+            Delete Show
+          </Button>
         </TableCell>
       </TableRow>
     );
@@ -54,4 +60,4 @@ const mapStateToProps = store => ({
   store
 });
 
-export default withRouter(connect(mapStateToProps)(HomeEventList));
+export default withRouter(connect(mapStateToProps)(UserCreatedTable));

@@ -91,7 +91,7 @@ class AddShowsPage extends Component {
             <label>Date of Show</label>
             <input
               type='date'
-              className='form-control'
+              // className='form-control'
               onChange={event => this.handleChange("showDate", event)}
             />
           </div>
@@ -99,7 +99,7 @@ class AddShowsPage extends Component {
             <label>Doors time?</label>
             <input
               type='time'
-              className='form-control'
+              // className='form-control'
               placeholder='7:00 pm'
               onChange={event => this.handleChange("doorTime", event)}
             />
@@ -108,7 +108,7 @@ class AddShowsPage extends Component {
             <label>Show start time?</label>
             <input
               type='time'
-              className='form-control'
+              // className='form-control'
               placeholder=' time'
               onChange={event => this.handleChange("showTime", event)}
             />
@@ -121,7 +121,7 @@ class AddShowsPage extends Component {
           <div className='form-group'>
             <label>Venue Selection</label>
             <select
-              className='form-control'
+              className='form-control dropDownMenu'
               onChange={event => this.handleChange("venueId", event)}>
               <option value=''>None</option>
               {this.props.store.venueReducer.map(venue => {
@@ -137,7 +137,7 @@ class AddShowsPage extends Component {
           <div className='form-group'>
             <label>Band Selection</label>
             <select
-              className='form-control'
+              className='form-control dropDownMenu'
               onChange={event => this.handleChange("bandId", event)}>
               <option value=''>None</option>
               {this.props.store.viewAddBandsReducer.map(band => {

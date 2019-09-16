@@ -42,12 +42,12 @@ class AdminPageList extends Component {
           <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
         </TableCell>
         <TableCell>
-          <Button variant='contained' color='danger'>
+          <Button variant='contained' color='secondary'>
             Delete
           </Button>
           <Button
             variant='contained'
-            color='secondary'
+            color='primary'
             onClick={this.goToEditPage}>
             Edit
           </Button>

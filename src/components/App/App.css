@@ -1,5 +1,17 @@
+@font-face {
+  font-family: rockFont;
+  src: url(../../font/Rockit.ttf);
+}
+
+@font-face {
+  font-family: rockText;
+  src: url(../../font/gomarice_rockin_record.ttf);
+}
+
+
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "rockText" !important;
     margin: 0px;
 }
 
@@ -73,4 +85,23 @@ input {
 .menuMusic {
     width: 1.5em;
     height: 1.6em;
+}
+
+.sweetAlert {
+    width: 50%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "rockFont" !important;
+    height: auto;
+    padding-top: 50px;
+    text-align: center;
+}
+
+form {
+    /* font-size: 2rem !important; */
+}
+
+.dropDownMenu {
+    font-size: 15pt;
 }

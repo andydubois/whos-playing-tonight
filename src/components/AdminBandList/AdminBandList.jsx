@@ -15,11 +15,12 @@ class AdminBandList extends Component {
     swal({
       title: "Are you sure?",
       text:
-        "Once deleted, this will delete the BAND as well as ALL SHOWS associated with the band PERMANENTLY.",
+        "Once deleted,  the BAND as well as ALL SHOWS, and MUSIC associated with the band will be deleted PERMANENTLY.",
       icon: "warning",
       buttons: true,
       buttons: ["Cancel", "Yes, delete them all."],
-      dangerMode: true
+      dangerMode: true,
+      className: "sweetAlert"
     }).then(willDelete => {
       if (willDelete) {
         this.props.dispatch({
@@ -40,7 +41,7 @@ class AdminBandList extends Component {
       <TableRow>
         <TableCell>{this.props.band.band_name}</TableCell>
         <TableCell>
-          <Button variant='contained' color='danger' onClick={this.deleteBand}>
+          <Button variant='contained' color='secondary' onClick={this.deleteBand}>
             Delete
           </Button>
         </TableCell>

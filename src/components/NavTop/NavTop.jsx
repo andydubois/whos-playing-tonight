@@ -8,13 +8,25 @@ import QueueMusic from "@material-ui/icons/QueueMusic";
 
 const TopNav = props => (
   <Navbar bg='dark' variant='dark' style={{ minWidth: 700 }}>
-    <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
+    <Navbar.Brand href='#home'>WPT?</Navbar.Brand>
     <Nav className='mr-auto'>
       <Nav.Link variant='dark' href='#home'>
         {props.user.id ? "Home" : "Login / Register"}
       </Nav.Link>
       {props.user.id && (
         <>
+          <Nav.Link variant='dark' href='#/addShow'>
+            Add Show
+          </Nav.Link>
+          <Nav.Link variant='dark' href='#/bands'>
+            View/Add Bands
+          </Nav.Link>
+          <Nav.Link variant='dark' href='#/profile'>
+            Profile
+          </Nav.Link>
+          <Nav.Link variant='dark' href='#/admin'>
+            ADMIN
+          </Nav.Link>
           <QueueMusic className='menuMusic' />
           <NavDropdown title='' id='nav-dropdown'>
             <NavDropdown.Item href='#/addShow'>Add Show</NavDropdown.Item>

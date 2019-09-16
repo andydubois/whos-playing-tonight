@@ -27,6 +27,8 @@ class Admin extends Component {
       <div className='react-transition swipe-right'>
         <CssBaseline />
         <h2>ADMIN</h2>
+        <br />
+        <h3>All Shows</h3>
         <Table>
           <TableHead>
             <TableRow>
@@ -41,7 +43,7 @@ class Admin extends Component {
             })}
           </TableBody>
         </Table>
-        <h2>All Bands</h2>
+        <h3>All Bands</h3>
         <Table>
           <TableHead>
             <TableRow>
