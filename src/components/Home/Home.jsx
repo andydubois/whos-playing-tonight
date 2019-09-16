@@ -10,24 +10,18 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { CssBaseline } from "@material-ui/core";
 
-
 //Components
 import HomeEventList from "../HomeEventList/HomeEventList";
-
+import { Container, Col, Row } from "react-bootstrap";
 
 const styles = theme => ({
-	table: {
+  table: {
     size: "small",
-    maxWidth: '75%',
-
-	},
-	root: {
-    width: '75%'
-	},
-	//etc
+  },
+  root: {
+  }
+  //etc
 });
-
-
 
 class Home extends Component {
   componentDidMount() {
@@ -42,29 +36,36 @@ class Home extends Component {
   }
 
   render() {
-
-    const {classes} = this.props
+    const { classes } = this.props;
 
     return (
-      <div className='react-transition swipe-right'>
-        <CssBaseline />
-        <h1>Who's Playing Tonight?</h1>
-        <h5 className="homeHeader">{this.props.store.homeReducer.length} shows to see!</h5>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Band</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.props.store.homeReducer.map(show => {
-              return <HomeEventList show={show} />;
-            })}
-          </TableBody>
-        </Table>
-      </div>
+      <Container className='react-transition swipe-right'>
+        <Row>
+          <Col></Col>
+          <Col xs={10} className="homeContainer">
+            <CssBaseline />
+            <h1>Who's Playing Tonight?</h1>
+            <h5 className='homeHeader'>
+              {this.props.store.homeReducer.length} shows to see!
+            </h5>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Band</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.props.store.homeReducer.map(show => {
+                  return <HomeEventList show={show} />;
+                })}
+              </TableBody>
+            </Table>
+          </Col>
+          <Col></Col>
+        </Row>
+      </Container>
     );
   }
 }

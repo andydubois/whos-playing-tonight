@@ -130,3 +130,7 @@ form {
     color: white !important;
     font-family: 'rounded' !important;
 }
+
+.homeContainer {
+    justify-content: center !important;
+}
