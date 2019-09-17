@@ -6,13 +6,57 @@ import ShowList from "../ShowList/ShowList";
 import Button from "@material-ui/core/Button";
 import { CssBaseline } from "@material-ui/core";
 
-
 class BandPage extends Component {
+  state = {
+    ytLink: "",
+    bandId: this.props.match.params.id
+  };
+
+componentDidMount = () => {
+  this.getBandDetails();
+}
+
+
+  handleChange = (propertyName, event) => {
+    this.setState({
+      ...this.state,
+      [propertyName]: event.target.value
+    });
+    console.log(this.state);
+  };
+
+  getBandDetails = () => {
+    this.props.dispatch({
+      type: "FETCH_BAND_DETAILS",
+      payload: this.props.match.params.id
+    });
+    this.props.dispatch({
+      type: "FETCH_PAST_SHOWS",
+      payload: this.props.match.params.id
+    });
+    this.props.dispatch({
+      type: "FETCH_FUTURE_SHOWS",
+      payload: this.props.match.params.id
+    });
+  };
+
+  //adds YouTube link to database
+  addYtLink = () => {
+    this.props.dispatch({
+      type: "ADD_MUSIC",
+      payload: this.state
+    });
+    this.setState = {
+      ytLink: ""
+    };
+    this.getBandDetails();
+  };
+
   render() {
     return (
       <div className='react-transition swipe-right'>
         <CssBaseline />
-        <h1>Band Page</h1>
+        <h1>{this.props.store.bandNameReducer.band_name}</h1>
         <div className='container'>
           <div className='row'>
             <div className='col'>
@@ -42,13 +86,18 @@ class BandPage extends Component {
                     type='text'
                     className='form-control'
                     placeholder='Link'
+                    value={this.state.ytLink}
                     onChange={event => this.handleChange("ytLink", event)}
                   />
                   <small className='form-text text-muted'>
                     Enter YouTube link above
                   </small>
                 </div>
-                <Button type='submit' variant='contained' color='primary'>
+                <Button
+                  onClick={this.addYtLink}
+                  type='submit'
+                  variant='contained'
+                  color='primary'>
                   Add New Music
                 </Button>
               </form>

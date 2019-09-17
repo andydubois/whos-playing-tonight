@@ -17,18 +17,18 @@ function* getBandDetails(action) {
 }
 
 function* getPastShows(action) {
-    console.log("client side band shows GET", action);
-    try {
-        let response = yield axios.get(`/api/band/pastShows/${action.payload}`);
-        console.log("GET all past shows for band", response.data);
-        //gives band shows to bandPageShow reducer
-        yield put ({
-            type: "SET_PAST_SHOWS",
-            payload: response.data
-        });
-    } catch (error) {
-        console.log("error on pastShows GET client side", error);
-    }
+  console.log("client side band shows GET", action);
+  try {
+    let response = yield axios.get(`/api/band/pastShows/${action.payload}`);
+    console.log("GET all past shows for band", response.data);
+    //gives band shows to bandPageShow reducer
+    yield put({
+      type: "SET_PAST_SHOWS",
+      payload: response.data
+    });
+  } catch (error) {
+    console.log("error on pastShows GET client side", error);
+  }
 }
 
 function* getFutureShows(action) {
@@ -46,11 +46,25 @@ function* getFutureShows(action) {
   }
 }
 
+function* addMusic(action) {
+  console.log("client side add show POST", action);
+  try {
+    let response = yield axios.post(`/api/band/addMusic/${action.payload.bandId}`, action.payload);
+    console.log("POST new music link to database", response.data);
+    yield put ({
+      type: "FETCH_BAND_DETAILS",
+      payload: action.payload.bandId
+    })
+  } catch(error) {
+    console.log('error in add music POST client side', error)
+  }
+}
 
 function* watchMe() {
-    yield takeEvery ("FETCH_BAND_DETAILS", getBandDetails);
-    yield takeEvery ("FETCH_PAST_SHOWS", getPastShows);
-    yield takeEvery ("FETCH_FUTURE_SHOWS", getFutureShows);
+  yield takeEvery("FETCH_BAND_DETAILS", getBandDetails);
+  yield takeEvery("FETCH_PAST_SHOWS", getPastShows);
+  yield takeEvery("FETCH_FUTURE_SHOWS", getFutureShows);
+  yield takeEvery("ADD_MUSIC", addMusic);
 }
 
 export default watchMe;

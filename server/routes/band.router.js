@@ -9,7 +9,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
     SELECT "music".url, "bands".band_name, "bands".id FROM "bands"
-    JOIN "music" ON "bands".id="music".band_id
+    FULL JOIN "music" ON "bands".id="music".band_id
     WHERE "bands".id = $1;`;
   pool
     .query(queryText, [req.params.id])
@@ -59,6 +59,20 @@ router.get("/futureShows/:id", rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post("/", (req, res) => {});
+router.post("/addMusic/:id", rejectUnauthenticated, (req, res) => {
+  const bandId = req.params.id
+  const url = req.body.ytLink
+  const queryText = `
+  INSERT INTO music (band_id, url) VALUES ($1, $2);`;
+  pool.query(queryText, [bandId, url])
+  .then(result => {
+    res.sendStatus(200);
+    console.log("successful newMusic POST server side");
+  })
+  .catch(error => {
+    console.log("error in server side music POST", error);
+    res.sendStatus(500);
+  })
+});
 
 module.exports = router;
