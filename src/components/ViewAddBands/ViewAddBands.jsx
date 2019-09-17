@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ViewAddList from "../ViewAddList/ViewAddList";
+import "./ViewAddBands.css"
 
 //Material UI Components
 import Table from "@material-ui/core/Table";
@@ -54,11 +55,13 @@ class ViewAddBands extends Component {
     return (
       <div className='react-transition swipe-right'>
         <CssBaseline />
-        <h1>View/Add Bands</h1>
+        <h1>View/Add </h1>
+        <h1>Bands</h1>
         <div className='container'>
           <div className='row'>
             <div className='col'>
-              <h4>List of Bands</h4>
+              <h4>List of</h4>
+              <h4 className='bandsHeader'>Bands</h4>
               <p></p>
               <Table>
                 <TableHead>

@@ -8,7 +8,6 @@ import {
 
 import { connect } from "react-redux";
 
-import Nav from "../Nav/Nav";
 import NavTop from "../NavTop/NavTop"
 import Footer from "../Footer/Footer";
 
@@ -59,7 +58,6 @@ class App extends Component {
   }
 
   render() {
-    let location = this.props.location
     return (
       <MuiThemeProvider theme={theme}>
         <Router>

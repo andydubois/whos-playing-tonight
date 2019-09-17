@@ -8,12 +8,23 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import MusicVideo from "@material-ui/icons/MusicVideo";
 import Navigation from "@material-ui/icons/Navigation";
 import Check from "@material-ui/icons/Check";
 import { CssBaseline } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import DoorIcon from "../../icons/Door.js"
+
+const styles = theme => ({
+  icon: {
+    paddingRight: "5px",
+    display: "inline",
+    color: "white",
+    height: "1em"
+  }
+});
+
 
 class EventPage extends Component {
   state = {
@@ -68,6 +79,8 @@ class EventPage extends Component {
   }
 
   render() {
+
+     const { classes } = this.props;
     //variable to check if addressShowing in state is true or false for conditional render of venue name or address
     const addressShowing = this.state.addressShowing;
 
@@ -89,47 +102,51 @@ class EventPage extends Component {
         <CssBaseline />
         <h1>EVENT PAGE</h1>
 
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>
-                  <p>
-                    <MusicVideo />
-                  </p>
-                  <br />
-                  <Navigation />
-                  <br />
-                </TableCell>
-                <TableCell>
-                  <p>{this.props.store.eventDetailsReducer.band_name}</p>
-                  <p onClick={this.addressVenueChange}>
-                    {addressShowing
-                      ? this.props.store.eventDetailsReducer.location_name
-                      : `${this.props.store.eventDetailsReducer.number_street} ${this.props.store.eventDetailsReducer.city}, ${this.props.store.eventDetailsReducer.state}`}
-                  </p>
-                  <p>
-                    {this.props.store.eventDetailsReducer.time_doors} /{" "}
-                    {this.props.store.eventDetailsReducer.time_show}
-                  </p>
-                  <p>
-                    <Moment format='MM/DD/YYYY'>
-                      {this.props.store.eventDetailsReducer.date}
-                    </Moment>
-                  </p>
-                </TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-          <ul>{guestList}</ul>
-          <Button onClick={this.rsvpForEvent}>RSVP</Button>
-          <Button onClick={this.notGoingToEvent}>NOT GOING ANYMORE</Button>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell>
+                <p>Headliner</p>
+                <p>
+                  <MusicVideo className={classes.icon} />
+                  {this.props.store.eventDetailsReducer.band_name}
+                </p>
+                <p onClick={this.addressVenueChange}>
+                  <Navigation className={classes.icon} />
+                  {addressShowing
+                    ? this.props.store.eventDetailsReducer.location_name
+                    : `${this.props.store.eventDetailsReducer.number_street} ${this.props.store.eventDetailsReducer.city}, ${this.props.store.eventDetailsReducer.state}`}
+                </p>
+                <p>
+                  <DoorIcon
+                    className={classes.icon}
+                    width='1em'
+                    height='1em'
+                    color='white'
+                  />
+                  {this.props.store.eventDetailsReducer.time_doors} /{" "}
+                  {this.props.store.eventDetailsReducer.time_show}
+                </p>
+                <p>
+                  <Moment format='MM/DD/YYYY'>
+                    {this.props.store.eventDetailsReducer.date}
+                  </Moment>
+                </p>
+              </TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+        <ul>{guestList}</ul>
+        <Button onClick={this.rsvpForEvent}>RSVP</Button>
+        <Button onClick={this.notGoingToEvent}>NOT GOING ANYMORE</Button>
       </div>
     );
   }
@@ -139,4 +156,4 @@ const mapStateToProps = store => ({
   store
 });
 
-export default connect(mapStateToProps)(EventPage);
+export default withStyles(styles)(connect(mapStateToProps)(EventPage));

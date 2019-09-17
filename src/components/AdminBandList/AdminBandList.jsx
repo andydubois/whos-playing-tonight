@@ -17,7 +17,6 @@ class AdminBandList extends Component {
       text:
         "Once deleted,  the BAND as well as ALL SHOWS, and MUSIC associated with the band will be deleted PERMANENTLY.",
       icon: "warning",
-      buttons: true,
       buttons: ["Cancel", "Yes, delete them all."],
       dangerMode: true,
       className: "sweetAlert"

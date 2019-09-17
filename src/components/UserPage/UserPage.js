@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LogOutButton from "../LogOutButton/LogOutButton";
 import HomeEventList from "../HomeEventList/HomeEventList";
 import UserCreatedTable from "../UserCreatedTable/UserCreatedTable"
 
@@ -11,8 +10,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { CssBaseline } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import {Grid} from "@material-ui/core"
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -46,13 +43,14 @@ class UserPage extends Component {
     return (
       <div className='react-transition swipe-right'>
         <CssBaseline />
-        <h1 id='welcome'>Welcome, {this.props.store.user.username}!</h1>
-        <p>Your ID is: {this.props.store.user.id}</p>
+        <h1 id='welcome'>Welcome, </h1>
+        <h1>{this.props.store.user.username}!</h1>
+        <br />
         <div>
           <div className='container'>
             <div className='row'>
-              <div className='col 6'>
-                <h4>Show History</h4>
+              <div className='col 12'>
+                <h5>Show History</h5>
                 <p></p>
                 <Table>
                   <TableHead>
@@ -69,8 +67,8 @@ class UserPage extends Component {
                   </TableBody>
                 </Table>
               </div>
-              <div className='col-6'>
-                <h4>Show's You've Added</h4>
+              <div className='col 6'>
+                <h5>Show's You've Added</h5>
                 <Table>
                   <TableHead>
                     <TableRow>

@@ -41,7 +41,6 @@ class AdminPageList extends Component {
       text:
         "Are you sure you wanted to permanently delete this show from the database?",
       icon: "warning",
-      buttons: true,
       buttons: ["Cancel", "Yes, delete the band"],
       dangerMode: true,
       className: "sweetAlert"

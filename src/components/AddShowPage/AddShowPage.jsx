@@ -4,10 +4,21 @@ import { connect } from "react-redux";
 //Material UI components
 import Button from "@material-ui/core/Button";
 import { CssBaseline } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+
+const styles = theme => ({
+  close: {
+    padding: theme.spacing.unit / 2
+  }
+});
 
 class AddShowsPage extends Component {
   state = {
     newAddress: false,
+    snackBarOpen: false,
     showInfo: {
       showDate: "",
       doorTime: "",
@@ -24,6 +35,12 @@ class AddShowsPage extends Component {
     }
   };
 
+  componentDidMount() {
+    this.getVenues();
+    this.getBandList();
+  }
+
+  //submits new show info to database
   submitNewShow = event => {
     event.preventDefault();
     this.props.dispatch({
@@ -32,18 +49,34 @@ class AddShowsPage extends Component {
     });
   };
 
+  //submits new venue info to database
   submitNewVenue = event => {
     event.preventDefault();
     this.props.dispatch({
       type: "ADD_VENUE",
       payload: this.state.address
     });
+    //opens snack bar on click
+    this.setState({ snackBarOpen: true });
+    //reset input fields to empty after submission
+    this.setState({
+      address: {
+        numberStreet: "",
+        city: "",
+        state: "",
+        zip: "",
+        venue_name: ""
+      }
+    });
   };
 
-  componentDidMount() {
-    this.getVenues();
-    this.getBandList();
-  }
+  //close snackbar on a click away
+  handleSnackClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({ snackBarOpen: false });
+  };
 
   getVenues() {
     this.props.dispatch({
@@ -70,7 +103,7 @@ class AddShowsPage extends Component {
   handleAddressChange = (propertyName, event) => {
     this.setState({
       address: {
-        ...this.state.showInfo,
+        ...this.state.address,
         [propertyName]: event.target.value
       }
     });
@@ -82,10 +115,13 @@ class AddShowsPage extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div className='react-transition swipe-right'>
         <CssBaseline />
-        <h1>Add New Show</h1>
+        <h1>Add New</h1>
+        <h1>Show</h1>
+        <h1></h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>
           <div className='form-group'>
             <label>Date of Show</label>
@@ -112,11 +148,6 @@ class AddShowsPage extends Component {
               placeholder=' time'
               onChange={event => this.handleChange("showTime", event)}
             />
-            <small className='form-text text-muted'>
-              -Enter band name above. <br />
-              -Click on band names to travel to band pages and add music links
-              for each.
-            </small>
           </div>
           <div className='form-group'>
             <label>Venue Selection</label>
@@ -132,7 +163,18 @@ class AddShowsPage extends Component {
                 );
               })}
             </select>
+            <small className='form-text text-muted'>
+              If desired venue isn't in dropdown, click the "Add New Venue"
+              button below, enter venue info, and submit. Venue will now be in
+              the dropdown.
+            </small>
           </div>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={this.showVenueForm}>
+            {this.state.newAddress ? "Hide Form" : "Add New Venue"}
+          </Button>
 
           <div className='form-group'>
             <label>Band Selection</label>
@@ -158,14 +200,8 @@ class AddShowsPage extends Component {
             Submit Event
           </Button>
         </form>
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={this.showVenueForm}>
-          {this.state.newAddress ? "Hide Form" : "Add New Venue"}
-        </Button>
         <div className={this.state.newAddress ? null : "hidden"}>
-          <form className='addShowForm' onSubmit={this.submitNewVenue}>
+          <form className='addShowForm'>
             <div className='form-group'>
               <label>
                 If venue is not in dropdown, please enter address and venue name
@@ -180,7 +216,6 @@ class AddShowsPage extends Component {
                 onChange={event =>
                   this.handleAddressChange("venue_name", event)
                 }
-                disabled={this.state.showInfo.venueId === "" ? false : true}
               />
             </div>
             <div className='form-group'>
@@ -189,8 +224,10 @@ class AddShowsPage extends Component {
                 type='text'
                 className='form-control'
                 placeholder='123 Fake St'
-                onChange={event => this.handleAddressChange("street", event)}
-                disabled={this.state.showInfo.venueId === "" ? false : true}
+                onChange={event =>
+                  this.handleAddressChange("numberStreet", event)
+                }
+                value={this.state.address.numberStreet}
               />
             </div>
             <div className='form-group'>
@@ -200,7 +237,7 @@ class AddShowsPage extends Component {
                 className='form-control'
                 placeholder='Fakesville'
                 onChange={event => this.handleAddressChange("city", event)}
-                disabled={this.state.showInfo.venueId === "" ? false : true}
+                value={this.state.address.city}
               />
             </div>
             <div className='form-group'>
@@ -210,7 +247,7 @@ class AddShowsPage extends Component {
                 className='form-control'
                 placeholder='MN'
                 onChange={event => this.handleAddressChange("state", event)}
-                disabled={this.state.showInfo.venueId === "" ? false : true}
+                value={this.state.address.state}
               />
             </div>
             <div className='form-group'>
@@ -220,13 +257,39 @@ class AddShowsPage extends Component {
                 className='form-control'
                 placeholder='55555'
                 onChange={event => this.handleAddressChange("zip", event)}
-                disabled={this.state.showInfo.venueId === "" ? false : true}
+                value={this.state.address.zip}
               />
             </div>
-            <Button type='submit' variant='contained' color='primary'>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={this.submitNewVenue}>
               Submit New Venue
             </Button>
           </form>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left"
+            }}
+            open={this.state.snackBarOpen}
+            autoHideDuration={6000}
+            onClose={this.handleSnackClose}
+            ContentProps={{
+              "aria-describedby": "message-id"
+            }}
+            message={<span id='message-id'>New Venue Added to List!</span>}
+            action={[
+              <IconButton
+                key='close'
+                aria-label='Close'
+                color='inherit'
+                className={classes.close}
+                onClick={this.handleSnackClose}>
+                <CloseIcon />
+              </IconButton>
+            ]}
+          />
         </div>
       </div>
     );
@@ -237,4 +300,4 @@ const mapStateToProps = store => ({
   store
 });
 
-export default connect(mapStateToProps)(AddShowsPage);
+export default withStyles(styles)(connect(mapStateToProps)(AddShowsPage));

@@ -1,13 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Navbar, Nav, NavDropdown, NavItem } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown} from "react-bootstrap";
 import LogOutButton from "../LogOutButton/LogOutButton";
-import MenuIcon from "./menu-icon.png";
 import QueueMusic from "@material-ui/icons/QueueMusic";
 
 const TopNav = props => (
-  <Navbar bg='dark' variant='dark' style={{ minWidth: 700 }}>
+  <Navbar bg='dark' variant='dark' style={{ minWidth: 375 }}>
     <Navbar.Brand href='#home'>WPT?</Navbar.Brand>
     <Nav className='mr-auto'>
       <Nav.Link variant='dark' href='#home'>
@@ -15,7 +13,7 @@ const TopNav = props => (
       </Nav.Link>
       {props.user.id && (
         <>
-          <Nav.Link variant='dark' href='#/addShow'>
+          {/* <Nav.Link variant='dark' href='#/addShow'>
             Add Show
           </Nav.Link>
           <Nav.Link variant='dark' href='#/bands'>
@@ -24,16 +22,25 @@ const TopNav = props => (
           <Nav.Link variant='dark' href='#/profile'>
             Profile
           </Nav.Link>
-          <Nav.Link variant='dark' href='#/admin'>
-            ADMIN
-          </Nav.Link>
-          <QueueMusic className='menuMusic' />
-          <NavDropdown title='' id='nav-dropdown'>
+          {props.user.clearance > 1 ? (
+            <Nav.Link variant='dark' href='#/admin'>
+              ADMIN
+            </Nav.Link>
+          ) : (
+            ""
+          )} */}
+
+          {/* <QueueMusic className='menuMusic' /> */}
+          <NavDropdown title='Menu' id='nav-dropdown'>
             <NavDropdown.Item href='#/addShow'>Add Show</NavDropdown.Item>
             <NavDropdown.Item href='#/bands'>View/Add Bands</NavDropdown.Item>
             <NavDropdown.Item href='#/profile'>Profile</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href='#/admin'>Admin</NavDropdown.Item>
+            {props.user.clearance > 1 ? (
+              <NavDropdown.Item href='#/admin'>Admin</NavDropdown.Item>
+            ) : (
+              ""
+            )}
           </NavDropdown>
           <LogOutButton />
         </>

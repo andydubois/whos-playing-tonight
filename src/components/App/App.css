@@ -134,3 +134,7 @@ form {
 .homeContainer {
     justify-content: center !important;
 }
+
+.bandsHeader {
+    padding-top: 25px;
+}

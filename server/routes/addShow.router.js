@@ -23,6 +23,7 @@ router.get("/venues", rejectUnauthenticated, (req, res) => {
     });
 });
 
+//POST route for new event.  Adds data to event table and band_event table
 router.post("/", rejectUnauthenticated, (req, res) => {
   console.log(req.body);
   const queryText = `
@@ -48,13 +49,18 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-router.post("/newVenue", rejectUnauthenticated, (req, res) => {
+//POST route for adding new venue to database
+router.post("/addVenue", rejectUnauthenticated, (req, res) => {
   const queryText = `
-  INSERT INTO "locations" (location_name, number_street, city, state, zip_code) VALUES ($1, '$2, $3, $4, $5);`;
-  pool.query(queryText, [req.body.venue_name, req.body.numberStreet, req.body.city, req.body.state, req.body.zip]);
+  INSERT INTO "locations" (location_name, number_street, city, state, zip_code) VALUES ($1, $2, $3, $4, $5);`;
+  pool.query(queryText, [req.body.venue_name, req.body.numberStreet, req.body.city, req.body.state, req.body.zip])
+  .then(result => {
+    res.sendStatus(200);
+    console.log("successful newVenue POST server side");
+  })
+  .catch(error => {
+    console.log("error in addVenue POST server side", error);
+  })
 });
 
 module.exports = router;

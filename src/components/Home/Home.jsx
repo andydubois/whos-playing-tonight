@@ -41,10 +41,12 @@ class Home extends Component {
     return (
       <Container className='react-transition swipe-right'>
         <Row>
-          <Col></Col>
-          <Col xs={10} className="homeContainer">
+          {/* <Col></Col> */}
+          <Col xs={12} className="homeContainer">
             <CssBaseline />
-            <h1>Who's Playing Tonight?</h1>
+            <h1>Who's</h1>
+            <h1>Playing</h1>
+            <h1>Tonight?</h1>
             <h5 className='homeHeader'>
               {this.props.store.homeReducer.length} shows to see!
             </h5>
