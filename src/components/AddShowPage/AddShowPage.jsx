@@ -18,7 +18,8 @@ const styles = theme => ({
 class AddShowsPage extends Component {
   state = {
     newAddress: false,
-    snackBarOpen: false,
+    snackBarVenueOpen: false,
+    snackBarShowOpen: false,
     showInfo: {
       showDate: "",
       doorTime: "",
@@ -47,7 +48,13 @@ class AddShowsPage extends Component {
       type: "ADD_SHOW",
       payload: this.state.showInfo
     });
+    //opens snack bar on click
+    this.setState({ snackBarShowOpen: true });
   };
+
+  newShowClick = event => {
+     this.setState({ snackBarShowOpen: true });
+  }
 
   //submits new venue info to database
   submitNewVenue = event => {
@@ -57,7 +64,7 @@ class AddShowsPage extends Component {
       payload: this.state.address
     });
     //opens snack bar on click
-    this.setState({ snackBarOpen: true });
+    this.setState({ snackBarVenueOpen: true });
     //reset input fields to empty after submission
     this.setState({
       address: {
@@ -71,11 +78,18 @@ class AddShowsPage extends Component {
   };
 
   //close snackbar on a click away
-  handleSnackClose = (event, reason) => {
+  handleSnackVenueClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    this.setState({ snackBarOpen: false });
+    this.setState({ snackBarVenueOpen: false });
+  };
+
+  handleSnackShowClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({ snackBarShowOpen: false });
   };
 
   getVenues() {
@@ -196,7 +210,11 @@ class AddShowsPage extends Component {
             </small>
           </div>
 
-          <Button type='submit' variant='contained' color='primary'>
+          <Button
+            type='submit'
+            variant='contained'
+            color='primary'
+            onClick={this.newShowClick}>
             Submit Event
           </Button>
         </form>
@@ -272,9 +290,9 @@ class AddShowsPage extends Component {
               vertical: "bottom",
               horizontal: "left"
             }}
-            open={this.state.snackBarOpen}
+            open={this.state.snackBarVenueOpen}
             autoHideDuration={6000}
-            onClose={this.handleSnackClose}
+            onClose={this.handleSnackVenueClose}
             ContentProps={{
               "aria-describedby": "message-id"
             }}
@@ -285,7 +303,30 @@ class AddShowsPage extends Component {
                 aria-label='Close'
                 color='inherit'
                 className={classes.close}
-                onClick={this.handleSnackClose}>
+                onClick={this.handleSnackVenueClose}>
+                <CloseIcon />
+              </IconButton>
+            ]}
+          />
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left"
+            }}
+            open={this.state.snackBarShowOpen}
+            autoHideDuration={6000}
+            onClose={this.handleSnackShowClose}
+            ContentProps={{
+              "aria-describedby": "message-id"
+            }}
+            message={<span id='message-id'>New Show Added!</span>}
+            action={[
+              <IconButton
+                key='close'
+                aria-label='Close'
+                color='inherit'
+                className={classes.close}
+                onClick={this.handleSnackShowClose}>
                 <CloseIcon />
               </IconButton>
             ]}

@@ -39,7 +39,7 @@ form {
     padding: 25px;
     border-radius: 2px;
 }
-.text-muted {
+.text-muted, .guestList {
     color: white !important;
 }
 

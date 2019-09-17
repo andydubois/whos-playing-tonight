@@ -14,7 +14,7 @@ import Navigation from "@material-ui/icons/Navigation";
 import Check from "@material-ui/icons/Check";
 import { CssBaseline } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import DoorIcon from "../../icons/Door.js"
+import DoorIcon from "../../icons/Door.js";
 
 const styles = theme => ({
   icon: {
@@ -24,7 +24,6 @@ const styles = theme => ({
     height: "1em"
   }
 });
-
 
 class EventPage extends Component {
   state = {
@@ -76,11 +75,10 @@ class EventPage extends Component {
       payload: this.state.rsvp
     });
     this.getGuests();
-  }
+  };
 
   render() {
-
-     const { classes } = this.props;
+    const { classes } = this.props;
     //variable to check if addressShowing in state is true or false for conditional render of venue name or address
     const addressShowing = this.state.addressShowing;
 
@@ -94,7 +92,7 @@ class EventPage extends Component {
     });
 
     if (guestList.includes(this.props.store.user.username)) {
-      console.log('YEEEEEEEAH IT WORKS');
+      console.log("YEEEEEEEAH IT WORKS");
     }
 
     return (
@@ -144,9 +142,16 @@ class EventPage extends Component {
             </TableRow>
           </TableBody>
         </Table>
-        <ul>{guestList}</ul>
-        <Button onClick={this.rsvpForEvent}>RSVP</Button>
-        <Button onClick={this.notGoingToEvent}>NOT GOING ANYMORE</Button>
+        <ul className="guestList">{guestList}</ul>
+        <Button onClick={this.rsvpForEvent} variant='contained' color='primary'>
+          RSVP
+        </Button>
+        <Button
+          onClick={this.notGoingToEvent}
+          variant='contained'
+          color='primary'>
+          NOT GOING ANYMORE
+        </Button>
       </div>
     );
   }

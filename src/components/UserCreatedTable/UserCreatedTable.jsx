@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Moment from "react-moment";
+import swal from "sweetalert";
 
 //Material UI Components
 import TableCell from "@material-ui/core/TableCell";
@@ -19,17 +20,39 @@ class UserCreatedTable extends Component {
   //   console.log(`/details/{this.props.movie.id}`);
   // };
 
-  deleteShow = (action) => {
+  showDetailsClick = action => {
     this.props.dispatch({
-      type: "DELETE_USER_SHOW",
-      payload: this.props.show
+      type: "FETCH_EVENT_DETAILS",
+      payload: this.props.show.id
     });
-  }
+    this.props.history.push(`/event/${this.props.show.id}`);
+  };
+
+  deleteShow = action => {
+    swal({
+      title: "Are you sure?",
+      text:
+        "Are you sure you wanted to permanently delete this show from the database?",
+      icon: "warning",
+      buttons: ["Cancel", "Yes, delete the band"],
+      dangerMode: true,
+      className: "sweetAlert"
+    }).then(willDelete => {
+      if (willDelete) {
+        this.props.dispatch({
+          type: "DELETE_USER_SHOW",
+          payload: this.props.show
+        });
+        swal("The band will rock no more!", {
+          icon: "success"
+        });
+      } else {
+        swal("No shows were hurt in the making of this alert.");
+      }
+    });
+  };
 
   render() {
-
-
-
     return (
       <TableRow onClick={this.showDetailsClick} key={this.props.show.id}>
         <TableCell>{this.props.show.band_name}</TableCell>

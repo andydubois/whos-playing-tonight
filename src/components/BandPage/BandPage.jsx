@@ -104,13 +104,19 @@ componentDidMount = () => {
             </div>
           </div>
         </div>
-        <iframe
-          id='ytplayer'
-          type='text/html'
-          width='375'
-          height='210'
-          src='https://www.youtube.com/embed/wvUQcnfwUUM'
-          frameborder='0'></iframe>
+        <h5>User Uploaded Music</h5>
+        <br />
+        {this.props.store.bandDetailsReducer.map(video => {
+          return (
+            <iframe
+              id='ytplayer'
+              type='text/html'
+              width='375'
+              height='210'
+              src={video.url}
+              frameBorder='0'></iframe>
+          );
+        })}
       </div>
     );
   }
