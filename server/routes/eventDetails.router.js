@@ -37,7 +37,7 @@ router.get("/guests/:id", (req, res) => {
     .query(queryText, [req.params.id])
     .then(results => {
       res.send(results.rows);
-      console.log(results.rows);
+      console.log("guests GET result", results.rows);
     })
     .catch(error => {
       console.log("error in server side event guest GET", error);
@@ -55,7 +55,15 @@ router.post("/rsvp/:id", (req, res) => {
   const queryText = `
     INSERT INTO "user_event" (user_id, event_id)
     VALUES ($1, $2);`;
-  pool.query(queryText, [user_id, event_id]);
+  pool.query(queryText, [user_id, event_id])
+  .then(result => {
+    res.sendStatus(200)
+    console.log("Successful RSVP POST server side")
+  })
+  .catch(error => {
+    console.log("error in rsvp POST route server side", error)
+    res.sendStatus(500);
+  })
 });
 
 router.delete("/noRsvp/:id", (req, res) => {

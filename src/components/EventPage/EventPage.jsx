@@ -43,6 +43,13 @@ class EventPage extends Component {
   componentDidMount() {
     this.getDetails();
     this.getGuests();
+    this.props.store.eventGuestReducer.map(guest => {
+      if (guest.username == this.props.store.user.username) {
+        return console.log('THE USER NAMES MATCH!');
+      } else {
+       return console.log('NO DICE')
+      }
+    })
   }
 
   //gets details about event being displayed
@@ -66,6 +73,7 @@ class EventPage extends Component {
       type: "RSVP_EVENT",
       payload: this.state.rsvp
     });
+    console.log("RSVP sent", this.state.rsvp);
     this.getGuests();
   };
 
@@ -90,10 +98,6 @@ class EventPage extends Component {
         </li>
       );
     });
-
-    if (guestList.includes(this.props.store.user.username)) {
-      console.log("YEEEEEEEAH IT WORKS");
-    }
 
     return (
       <div className='react-transition swipe-right'>
@@ -142,14 +146,14 @@ class EventPage extends Component {
             </TableRow>
           </TableBody>
         </Table>
-        <ul className="guestList">{guestList}</ul>
+        <ul className='guestList'>{guestList}</ul>
         <Button onClick={this.rsvpForEvent} variant='contained' color='primary'>
           RSVP
         </Button>
         <Button
           onClick={this.notGoingToEvent}
           variant='contained'
-          color='primary'>
+          color='secondary'>
           NOT GOING ANYMORE
         </Button>
       </div>

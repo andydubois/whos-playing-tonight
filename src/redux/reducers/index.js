@@ -15,6 +15,8 @@ import allShowsReducer from './allShowsReducer'
 import userHistoryReducer from './historyUserReducer'
 import userCreatedReducer from './userCreatedReducer'
 import bandNameReducer from './bandNameReducer'
+import userUpcomingReducer from './userUpcomingReducer'
+import userUpcWeekReducer from "./userUpcWeekReducer"
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -39,6 +41,8 @@ const rootReducer = combineReducers({
   userHistoryReducer, //holds user's past show history
   userCreatedReducer, //holds all shows made by specific user
   bandNameReducer, //holds band name for band page
+  userUpcomingReducer, //holds users upcoming shows from TODAY
+  userUpcWeekReducer, //holds user upcoming show from today to a week out
 });
 
 export default rootReducer;

@@ -44,11 +44,11 @@ class AddShowsPage extends Component {
   //submits new show info to database
   submitNewShow = event => {
     event.preventDefault();
-    // this.props.dispatch({
-    //   type: "ADD_SHOW",
-    //   payload: this.state.showInfo
-    // });
-    //opens snack bar on click
+    this.props.dispatch({
+      type: "ADD_SHOW",
+      payload: this.state.showInfo
+    });
+    // opens snack bar on click
     this.setState({ snackBarShowOpen: true });
   };
 
@@ -79,7 +79,6 @@ class AddShowsPage extends Component {
 
   //close snackbar on a click away
 
-
   handleSnackShowClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -109,10 +108,6 @@ class AddShowsPage extends Component {
     console.log(this.state);
   };
 
-
-
-
-
   render() {
     const { classes } = this.props;
     return (
@@ -122,6 +117,46 @@ class AddShowsPage extends Component {
         <h1>Show</h1>
         <h1></h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>
+          <div className='form-group'>
+            <label>Headliner Selection</label>
+            <select
+              className='form-control dropDownMenu'
+              onChange={event => this.handleChange("bandId", event)}>
+              <option value=''>None</option>
+              {this.props.store.viewAddBandsReducer.map(band => {
+                return (
+                  <option key={band.id} value={band.id}>
+                    {band.band_name}
+                  </option>
+                );
+              })}
+            </select>
+            <small className='form-text text-muted'>
+              If band isn't in dropdown, navigate to "View Bands" page to add
+              band to list
+            </small>
+          </div>
+          <div className='form-group'>
+            <label>Venue Selection</label>
+            <select
+              className='form-control dropDownMenu'
+              onChange={event => this.handleChange("venueId", event)}>
+              <option value=''>None</option>
+              {this.props.store.venueReducer.map(venue => {
+                return (
+                  <option key={venue.id} value={venue.id}>
+                    {venue.location_name}
+                  </option>
+                );
+              })}
+            </select>
+            <small className='form-text text-muted'>
+              If desired venue isn't in dropdown, click the "Add New Venue Form"
+              button below, enter venue info, and submit. Venue will now be in
+              the dropdown.
+            </small>
+          </div>
+          <AddShowVenueForm />
           <div className='form-group'>
             <label>Date of Show</label>
             <input
@@ -147,47 +182,6 @@ class AddShowsPage extends Component {
               placeholder=' time'
               onChange={event => this.handleChange("showTime", event)}
             />
-          </div>
-          <div className='form-group'>
-            <label>Venue Selection</label>
-            <select
-              className='form-control dropDownMenu'
-              onChange={event => this.handleChange("venueId", event)}>
-              <option value=''>None</option>
-              {this.props.store.venueReducer.map(venue => {
-                return (
-                  <option key={venue.id} value={venue.id}>
-                    {venue.location_name}
-                  </option>
-                );
-              })}
-            </select>
-            <small className='form-text text-muted'>
-              If desired venue isn't in dropdown, click the "Add New Venue"
-              button below, enter venue info, and submit. Venue will now be in
-              the dropdown.
-            </small>
-          </div>
-
-
-          <div className='form-group'>
-            <label>Band Selection</label>
-            <select
-              className='form-control dropDownMenu'
-              onChange={event => this.handleChange("bandId", event)}>
-              <option value=''>None</option>
-              {this.props.store.viewAddBandsReducer.map(band => {
-                return (
-                  <option key={band.id} value={band.id}>
-                    {band.band_name}
-                  </option>
-                );
-              })}
-            </select>
-            <small className='form-text text-muted'>
-              If band isn't in dropdown, navigate to "View Bands" page to add
-              band to list
-            </small>
           </div>
 
           <Button
@@ -222,7 +216,6 @@ class AddShowsPage extends Component {
             </IconButton>
           ]}
         />
-        <AddShowVenueForm />
       </div>
     );
   }

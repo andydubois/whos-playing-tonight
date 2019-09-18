@@ -52,11 +52,11 @@ class AddShowVenueForm extends Component {
   componentDidMount() {}
 
   submitNewVenue = event => {
-    // event.preventDefault();
-    // this.props.dispatch({
-    //   type: "ADD_VENUE",
-    //   payload: this.state.address
-    // });
+    event.preventDefault();
+    this.props.dispatch({
+      type: "ADD_VENUE",
+      payload: this.state.address
+    });
     //opens snack bar on click
     this.setState({ snackBarVenueOpen: true });
     //reset input fields to empty after submission
@@ -79,7 +79,7 @@ class AddShowVenueForm extends Component {
           variant='contained'
           color='primary'
           onClick={this.showVenueForm}>
-          {this.state.newAddress ? "Hide Form" : "Add New Venue"}
+          {this.state.newAddress ? "Hide Form" : "Add New Venue Form"}
         </Button>
         <div className={this.state.newAddress ? null : "hidden"}>
           <CssBaseline />
