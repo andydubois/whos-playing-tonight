@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import AddShowVenueForm from "../AddShowVenueForm/AddShowVenueForm";
 
 //Material UI components
 import Button from "@material-ui/core/Button";
@@ -18,7 +19,6 @@ const styles = theme => ({
 class AddShowsPage extends Component {
   state = {
     newAddress: false,
-    snackBarVenueOpen: false,
     snackBarShowOpen: false,
     showInfo: {
       showDate: "",
@@ -44,17 +44,17 @@ class AddShowsPage extends Component {
   //submits new show info to database
   submitNewShow = event => {
     event.preventDefault();
-    this.props.dispatch({
-      type: "ADD_SHOW",
-      payload: this.state.showInfo
-    });
+    // this.props.dispatch({
+    //   type: "ADD_SHOW",
+    //   payload: this.state.showInfo
+    // });
     //opens snack bar on click
     this.setState({ snackBarShowOpen: true });
   };
 
   newShowClick = event => {
-     this.setState({ snackBarShowOpen: true });
-  }
+    this.setState({ snackBarShowOpen: true });
+  };
 
   //submits new venue info to database
   submitNewVenue = event => {
@@ -78,12 +78,7 @@ class AddShowsPage extends Component {
   };
 
   //close snackbar on a click away
-  handleSnackVenueClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    this.setState({ snackBarVenueOpen: false });
-  };
+
 
   handleSnackShowClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -114,19 +109,9 @@ class AddShowsPage extends Component {
     console.log(this.state);
   };
 
-  handleAddressChange = (propertyName, event) => {
-    this.setState({
-      address: {
-        ...this.state.address,
-        [propertyName]: event.target.value
-      }
-    });
-    console.log(this.state);
-  };
 
-  showVenueForm = () => {
-    this.setState({ newAddress: !this.state.newAddress });
-  };
+
+
 
   render() {
     const { classes } = this.props;
@@ -183,12 +168,7 @@ class AddShowsPage extends Component {
               the dropdown.
             </small>
           </div>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={this.showVenueForm}>
-            {this.state.newAddress ? "Hide Form" : "Add New Venue"}
-          </Button>
+
 
           <div className='form-group'>
             <label>Band Selection</label>
@@ -218,120 +198,31 @@ class AddShowsPage extends Component {
             Submit Event
           </Button>
         </form>
-        <div className={this.state.newAddress ? null : "hidden"}>
-          <form className='addShowForm'>
-            <div className='form-group'>
-              <label>
-                If venue is not in dropdown, please enter address and venue name
-                below, submit it, and then select it from the dropdown above.
-              </label>
-              <small className='form-text text-muted'>Give venue a name</small>
 
-              <input
-                type='text'
-                className='form-control'
-                placeholder='Venue name here'
-                onChange={event =>
-                  this.handleAddressChange("venue_name", event)
-                }
-              />
-            </div>
-            <div className='form-group'>
-              <small className='form-text text-muted'>Street and #</small>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='123 Fake St'
-                onChange={event =>
-                  this.handleAddressChange("numberStreet", event)
-                }
-                value={this.state.address.numberStreet}
-              />
-            </div>
-            <div className='form-group'>
-              <small className='form-text text-muted'>City</small>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='Fakesville'
-                onChange={event => this.handleAddressChange("city", event)}
-                value={this.state.address.city}
-              />
-            </div>
-            <div className='form-group'>
-              <small className='form-text text-muted'>State</small>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='MN'
-                onChange={event => this.handleAddressChange("state", event)}
-                value={this.state.address.state}
-              />
-            </div>
-            <div className='form-group'>
-              <small className='form-text text-muted'>Zip Code</small>
-              <input
-                type='text'
-                className='form-control'
-                placeholder='55555'
-                onChange={event => this.handleAddressChange("zip", event)}
-                value={this.state.address.zip}
-              />
-            </div>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.submitNewVenue}>
-              Submit New Venue
-            </Button>
-          </form>
-          <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left"
-            }}
-            open={this.state.snackBarVenueOpen}
-            autoHideDuration={6000}
-            onClose={this.handleSnackVenueClose}
-            ContentProps={{
-              "aria-describedby": "message-id"
-            }}
-            message={<span id='message-id'>New Venue Added to List!</span>}
-            action={[
-              <IconButton
-                key='close'
-                aria-label='Close'
-                color='inherit'
-                className={classes.close}
-                onClick={this.handleSnackVenueClose}>
-                <CloseIcon />
-              </IconButton>
-            ]}
-          />
-          <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left"
-            }}
-            open={this.state.snackBarShowOpen}
-            autoHideDuration={6000}
-            onClose={this.handleSnackShowClose}
-            ContentProps={{
-              "aria-describedby": "message-id"
-            }}
-            message={<span id='message-id'>New Show Added!</span>}
-            action={[
-              <IconButton
-                key='close'
-                aria-label='Close'
-                color='inherit'
-                className={classes.close}
-                onClick={this.handleSnackShowClose}>
-                <CloseIcon />
-              </IconButton>
-            ]}
-          />
-        </div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right"
+          }}
+          open={this.state.snackBarShowOpen}
+          autoHideDuration={6000}
+          onClose={this.handleSnackShowClose}
+          ContentProps={{
+            "aria-describedby": "message-id"
+          }}
+          message={<span id='message-id'>New Show Added!</span>}
+          action={[
+            <IconButton
+              key='close'
+              aria-label='Close'
+              color='inherit'
+              className={classes.close}
+              onClick={this.handleSnackShowClose}>
+              <CloseIcon />
+            </IconButton>
+          ]}
+        />
+        <AddShowVenueForm />
       </div>
     );
   }
