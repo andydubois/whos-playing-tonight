@@ -104,7 +104,7 @@ class EditShowPage extends Component {
               type='date'
               className='form-control'
               onChange={event => this.handleChange("showDate", event)}
-              value={this.props.store.eventDetailsReducer.date}
+              // value={this.props.store.eventDetailsReducer.date}
             />
             <small className='form-text text-muted'>
               Previous date was {showDate}

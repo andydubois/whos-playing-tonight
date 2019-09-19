@@ -81,18 +81,22 @@ class Home extends Component {
             <h2>Who's Playing</h2>
             <h2>Tonight?</h2>
             <br />
-            <Button
-              onClick={this.showMyShowsWeek}
-              variant='contained'
-              color='primary'>
-              My Shows this week
-            </Button>
-            <Button
-              onClick={this.showAllMyShows}
-              variant='contained'
-              color='primary'>
-              My Shows (All)
-            </Button>
+            {this.state.myShowsAll ? (
+              <Button
+                onClick={this.showMyShowsWeek}
+                variant='contained'
+                color='primary'>
+                My Shows this week
+              </Button>
+            ) : (
+              <Button
+                onClick={this.showAllMyShows}
+                variant='contained'
+                color='primary'>
+                My Shows (All)
+              </Button>
+            )}
+
             <div className={this.state.myShowsAll ? null : "hidden"}>
               <h6>My Shows (All)</h6>
               <Table className={classes.table}>
