@@ -3,6 +3,8 @@ const bandDetails = (state = [], action) => {
   switch (action.type) {
     case "SET_BAND_DETAILS":
       return action.payload;
+    case "CLEAR_BAND_DETAILS":
+      return [];
     default:
       return state;
   }

@@ -13,9 +13,9 @@ import MusicVideo from "@material-ui/icons/MusicVideo";
 import Navigation from "@material-ui/icons/Navigation";
 import Alarm from "@material-ui/icons/Alarm";
 import Check from "@material-ui/icons/Check";
+import CalendarToday from "@material-ui/icons/CalendarToday";
 import { CssBaseline } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import DoorIcon from "../../icons/Door.js";
 
 const styles = theme => ({
   icon: {
@@ -127,11 +127,12 @@ class EventPage extends Component {
                     : `${this.props.store.eventDetailsReducer.number_street} ${this.props.store.eventDetailsReducer.city}, ${this.props.store.eventDetailsReducer.state}`}
                 </p>
                 <p>
-                  <Alarm />
+                  <Alarm className={classes.icon} />
                   {this.props.store.eventDetailsReducer.time_doors} /{" "}
                   {this.props.store.eventDetailsReducer.time_show}
                 </p>
                 <p>
+                  <CalendarToday className={classes.icon} />
                   <Moment format='MM/DD/YYYY'>
                     {this.props.store.eventDetailsReducer.date}
                   </Moment>
@@ -141,7 +142,7 @@ class EventPage extends Component {
             </TableRow>
           </TableBody>
         </Table>
-        <h6 className="guestHeader">Attending</h6>
+        <h6 className='guestHeader'>Attending</h6>
         <ul className='guestList'>{guestList}</ul>
         <Button onClick={this.rsvpForEvent} variant='contained' color='primary'>
           RSVP

@@ -8,7 +8,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   const queryText = `
-    SELECT * FROM "bands";`;
+    SELECT * FROM "bands"
+    ORDER BY "bands".band_name;`;
   pool
     .query(queryText)
     .then(results => {

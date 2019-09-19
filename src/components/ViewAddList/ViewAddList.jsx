@@ -8,6 +8,10 @@ import TableRow from "@material-ui/core/TableRow";
 
 class ViewAddList extends Component {
   getBandDetails = action => {
+    //clears old videos, so videos don't show up for the wrong band
+    this.props.dispatch({
+      type: "CLEAR_BAND_DETAILS"
+    })
     this.props.dispatch({
       type: "FETCH_BAND_DETAILS",
       payload: this.props.band.id

@@ -7,9 +7,9 @@ class ShowList extends Component {
   showDetailsClick = action => {
     this.props.dispatch({
       type: "FETCH_EVENT_DETAILS",
-      payload: this.props.show.id
+      payload: this.props.show.event_id
     });
-    this.props.history.push(`/event/${this.props.show.id}`);
+    this.props.history.push(`/event/${this.props.show.event_id}`);
   };
 
   render() {
