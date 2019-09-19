@@ -5,6 +5,7 @@ import ShowList from "../ShowList/ShowList";
 //Material UI Components
 import Button from "@material-ui/core/Button";
 import { CssBaseline } from "@material-ui/core";
+import ArrowBack from "@material-ui/icons/ArrowBack";
 
 class BandPage extends Component {
   state = {
@@ -12,10 +13,9 @@ class BandPage extends Component {
     bandId: this.props.match.params.id
   };
 
-componentDidMount = () => {
-  this.getBandDetails();
-}
-
+  componentDidMount = () => {
+    this.getBandDetails();
+  };
 
   handleChange = (propertyName, event) => {
     this.setState({
@@ -52,9 +52,20 @@ componentDidMount = () => {
     this.getBandDetails();
   };
 
+  backToBandList = () => {
+    this.props.history.push("/bands");
+  };
+
   render() {
     return (
       <div className='react-transition swipe-right'>
+        <Button
+          onClick={this.backToBandList}
+          variant='contained'
+          color='primary'>
+          <ArrowBack />
+          Back to Band List
+        </Button>
         <CssBaseline />
         <h1>{this.props.store.bandNameReducer.band_name}</h1>
         <div className='container'>
@@ -62,14 +73,14 @@ componentDidMount = () => {
             <div className='col'>
               <h5>Past</h5>
               <h5 className='bandsHeader'>Shows</h5>
-              <ul className="bandShowList">
+              <ul className='bandShowList'>
                 {this.props.store.pastShowReducer.map(show => {
                   return <ShowList show={show} />;
                 })}
               </ul>
               <h5>Future</h5>
               <h5 className='bandsHeader'>Shows</h5>
-              <ul className="bandShowList">
+              <ul className='bandShowList'>
                 {this.props.store.futureShowReducer.map(show => {
                   return <ShowList show={show} />;
                 })}

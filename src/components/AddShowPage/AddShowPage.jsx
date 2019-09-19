@@ -52,6 +52,7 @@ class AddShowsPage extends Component {
     this.setState({ snackBarShowOpen: true });
   };
 
+  //sets state to true to reveal snack bar notification
   newShowClick = event => {
     this.setState({ snackBarShowOpen: true });
   };
@@ -86,18 +87,21 @@ class AddShowsPage extends Component {
     this.setState({ snackBarShowOpen: false });
   };
 
+  //fetches venues from database
   getVenues() {
     this.props.dispatch({
       type: "FETCH_VENUES"
     });
   }
 
+  //fetches all bands from database
   getBandList() {
     this.props.dispatch({
       type: "FETCH_BANDS"
     });
   }
 
+  //change handle for showInfo in state
   handleChange = (propertyName, event) => {
     this.setState({
       showInfo: {

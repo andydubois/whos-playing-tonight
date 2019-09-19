@@ -16,7 +16,7 @@ class ShowList extends Component {
     return (
       <li key={this.props.show.id}>
         <p>
-          {this.props.show.band_name} <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
+          {this.props.show.locations_name} <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
         </p>
       </li>
     );

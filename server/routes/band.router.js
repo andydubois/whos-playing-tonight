@@ -24,9 +24,10 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 
 router.get("/pastShows/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
-    SELECT "events".date, "events".id as event_id, "bands".band_name, "bands".id as band_id FROM "bands"
+    SELECT "events".date, "events".id as event_id, "locations".location_name, "bands".band_name, "bands".id as band_id FROM "bands"
     JOIN "band_event" ON "bands".id="band_event".band_id
     JOIN "events" ON "band_event".event_id="events".id
+    JOIN "locations" ON "events".locations_id="locations".id
     WHERE "bands".id=$1 AND "events".date < CURRENT_DATE;`;
   pool
     .query(queryText, [req.params.id])
@@ -41,9 +42,10 @@ router.get("/pastShows/:id", rejectUnauthenticated, (req, res) => {
 
 router.get("/futureShows/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
-    SELECT "events".date, "events".id as event_id, "bands".band_name, "bands".id as band_id FROM "bands"
+    SELECT "events".date, "events".id as event_id, "locations".location_name, "bands".band_name, "bands".id as band_id FROM "bands"
     JOIN "band_event" ON "bands".id="band_event".band_id
     JOIN "events" ON "band_event".event_id="events".id
+    JOIN "locations" ON "events".locations_id="locations".id
     WHERE "bands".id=$1 AND "events".date >= CURRENT_DATE;`;
   pool
     .query(queryText, [req.params.id])

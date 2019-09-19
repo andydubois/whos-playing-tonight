@@ -15,7 +15,7 @@ class AdminBandList extends Component {
     swal({
       title: "Are you sure?",
       text:
-        "Once deleted,  the BAND as well as ALL SHOWS, and MUSIC associated with the band will be deleted PERMANENTLY.",
+        `Once deleted, ${this.props.band.band_name} as well as ALL SHOWS, and MUSIC associated with the band will be deleted PERMANENTLY.`,
       icon: "warning",
       buttons: ["Cancel", "Yes, delete them all."],
       dangerMode: true,
@@ -26,7 +26,7 @@ class AdminBandList extends Component {
           type: "DELETE_BAND",
           payload: this.props.band
         });
-        swal("The band will rock no more!", {
+        swal(`${this.props.band.band_name} will rock no more!`, {
           icon: "success"
         });
       } else {

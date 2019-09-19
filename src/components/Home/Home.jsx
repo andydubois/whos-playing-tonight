@@ -78,9 +78,8 @@ class Home extends Component {
           {/* <Col></Col> */}
           <Col xs={12} className='homeContainer'>
             <CssBaseline />
-            <h1>Who's</h1>
-            <h1>Playing</h1>
-            <h1>Tonight?</h1>
+            <h2>Who's Playing</h2>
+            <h2>Tonight?</h2>
             <br />
             <Button
               onClick={this.showMyShowsWeek}
