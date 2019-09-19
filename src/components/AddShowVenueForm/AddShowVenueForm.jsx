@@ -85,12 +85,7 @@ class AddShowVenueForm extends Component {
           <CssBaseline />
           <form className='addShowForm'>
             <div className='form-group'>
-              <label>
-                If venue is not in dropdown, please enter address and venue name
-                below, submit it, and then select it from the dropdown above.
-              </label>
               <small className='form-text text-muted'>Give venue a name</small>
-
               <input
                 type='text'
                 className='form-control'

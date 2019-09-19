@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import MusicVideo from "@material-ui/icons/MusicVideo";
 import Navigation from "@material-ui/icons/Navigation";
+import Alarm from "@material-ui/icons/Alarm";
 import Check from "@material-ui/icons/Check";
 import { CssBaseline } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -45,11 +46,11 @@ class EventPage extends Component {
     this.getGuests();
     this.props.store.eventGuestReducer.map(guest => {
       if (guest.username == this.props.store.user.username) {
-        return console.log('THE USER NAMES MATCH!');
+        return console.log("THE USER NAMES MATCH!");
       } else {
-       return console.log('NO DICE')
+        return console.log("NO DICE");
       }
-    })
+    });
   }
 
   //gets details about event being displayed
@@ -114,7 +115,7 @@ class EventPage extends Component {
           <TableBody>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell>
+              <TableCell className='eventTableCell'>
                 <p>Headliner</p>
                 <p>
                   <MusicVideo className={classes.icon} />
@@ -127,12 +128,7 @@ class EventPage extends Component {
                     : `${this.props.store.eventDetailsReducer.number_street} ${this.props.store.eventDetailsReducer.city}, ${this.props.store.eventDetailsReducer.state}`}
                 </p>
                 <p>
-                  <DoorIcon
-                    className={classes.icon}
-                    width='1em'
-                    height='1em'
-                    color='white'
-                  />
+                  <Alarm />
                   {this.props.store.eventDetailsReducer.time_doors} /{" "}
                   {this.props.store.eventDetailsReducer.time_show}
                 </p>

@@ -62,14 +62,14 @@ componentDidMount = () => {
             <div className='col'>
               <h5>Past</h5>
               <h5 className='bandsHeader'>Shows</h5>
-              <ul>
+              <ul className="bandShowList">
                 {this.props.store.pastShowReducer.map(show => {
                   return <ShowList show={show} />;
                 })}
               </ul>
               <h5>Future</h5>
               <h5 className='bandsHeader'>Shows</h5>
-              <ul>
+              <ul className="bandShowList">
                 {this.props.store.futureShowReducer.map(show => {
                   return <ShowList show={show} />;
                 })}

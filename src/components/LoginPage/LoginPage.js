@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CssBaseline } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 class LoginPage extends Component {
   state = {
@@ -32,55 +34,56 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
+        <CssBaseline />
         {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
+          <h2 className='alert' role='alert'>
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form className="loginForm" onSubmit={this.login}>
-          <h1>Login</h1>
+        <form className='loginForm' onSubmit={this.login}>
+          <h1 className="loginHeader">Login</h1>
           <div>
-            <label htmlFor="username">
+            <label htmlFor='username'>
               Username:
               <input
-                type="text"
-                name="username"
+                type='text'
+                name='username'
                 value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+                onChange={this.handleInputChangeFor("username")}
               />
             </label>
           </div>
           <div>
-            <label htmlFor="password">
+            <label htmlFor='password'>
               Password:
               <input
-                type="password"
-                name="password"
+                type='password'
+                name='password'
                 value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
+                onChange={this.handleInputChangeFor("password")}
               />
             </label>
           </div>
           <div>
             <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
+              className='log-in'
+              type='submit'
+              name='submit'
+              value='Log In'
             />
           </div>
         </form>
         <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
+          <Button
+            variant='contained'
+            color='secondary'
+            type='button'
+            className='link-button'
+            onClick={() => {
+              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
+            }}>
             Register
-          </button>
+          </Button>
         </center>
       </div>
     );

@@ -33,8 +33,8 @@ body {
 form {
     background-color: rgb(36, 38, 40);
     color: white;
-    width: 30%;
-    height: 250px;
+    /* width: 30%; */
+    /* height: 250px; */
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
@@ -49,13 +49,13 @@ input {
 }
 
 .log-in, .log-out, .register {
-  background-color: #00acb0;
+  background-color: #3f2377;
   border-radius: 4px;
   color: #f8f8f8;
   min-height: 50px;
   min-width: 100px;
   outline:0;
-  cursor: pointer;
+  cursor: pointer;font-family: "rounded";
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
@@ -121,6 +121,10 @@ form {
     font-size: 15pt;
 }
 
+.eventTableCell {
+    width: 100% !important;
+}
+
 .MuiTableCell-body {
     color: white !important;
     font-family: 'rounded' !important;
@@ -131,10 +135,36 @@ form {
     font-family: 'rounded' !important;
 }
 
+.MuiTableCell-root {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.swal-text {
+    text-align: center;
+}
+
+.swal-footer {
+  text-align: center;
+}
+
+.editButton {
+    text-align: center;
+}
+
 .homeContainer {
     justify-content: center !important;
 }
 
 .bandsHeader {
     padding-top: 25px;
+}
+
+.loginHeader {
+    padding-bottom: 25px;
+}
+
+.bandShowList {
+    color: white;
+    size: 5em;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
+import { CssBaseline } from "@material-ui/core";
 
 //Material UI components
 import Button from "@material-ui/core/Button";
@@ -93,7 +94,9 @@ class EditShowPage extends Component {
 
     return (
       <div>
-        <h1>Edit Show Details</h1>
+        <CssBaseline />
+        <h1>Edit Show</h1>
+        <h1>Details</h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>
           <div className='form-group'>
             <label>Date of Show</label>

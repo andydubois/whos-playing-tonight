@@ -19,21 +19,34 @@ class HomeEventList extends Component {
   //   console.log(`/details/{this.props.movie.id}`);
   // };
 
-  showDetailsClick = (action) => {
+  showDetailsClick = action => {
     this.props.dispatch({
       type: "FETCH_EVENT_DETAILS",
       payload: this.props.show.id
     });
-    this.props.history.push(`/event/${this.props.show.id}`)
-  }
+    this.props.history.push(`/event/${this.props.show.id}`);
+  };
+
+  getBandDetails = action => {
+    this.props.dispatch({
+      type: "FETCH_BAND_DETAILS",
+      payload: this.props.show.band_id
+    });
+    this.props.dispatch({
+      type: "FETCH_PAST_SHOWS",
+      payload: this.props.show.band_id
+    });
+    this.props.dispatch({
+      type: "FETCH_FUTURE_SHOWS",
+      payload: this.props.show.band_id
+    });
+    this.props.history.push(`/bands/${this.props.show.band_id}`);
+  };
 
   render() {
-
-
-
     return (
-      <TableRow onClick={this.showDetailsClick} key={this.props.show.id}>
-        <TableCell>{this.props.show.band_name}</TableCell>
+      <TableRow key={this.props.show.id}>
+        <TableCell onClick={this.getBandDetails}>{this.props.show.band_name}</TableCell>
         <TableCell>
           <Moment format='MM/DD/YYYY'>{this.props.show.date}</Moment>
         </TableCell>

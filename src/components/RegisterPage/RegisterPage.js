@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+//Material UI Components
+import { CssBaseline } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+
 class RegisterPage extends Component {
   state = {
     username: '',
@@ -32,13 +36,15 @@ class RegisterPage extends Component {
   render() {
     return (
       <div>
+        <CssBaseline />
         {this.props.errors.registrationMessage && (
           <h2 className='alert' role='alert'>
             {this.props.errors.registrationMessage}
           </h2>
         )}
         <form className='loginForm' onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <h1>Register</h1>
+          <h1>User</h1>
           <div>
             <label htmlFor='username'>
               Username:
@@ -71,14 +77,16 @@ class RegisterPage extends Component {
           </div>
         </form>
         <center>
-          <button
+          <Button
             type='button'
             className='link-button'
+            variant='contained'
+            color='secondary'
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
             }}>
             Login
-          </button>
+          </Button>
         </center>
       </div>
     );

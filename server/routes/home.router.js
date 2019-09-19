@@ -28,7 +28,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 router.get("/upcoming/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
-  SELECT bands.band_name, events.date, events.id FROM events
+  SELECT bands.band_name, bands.id as band_id, events.date, events.id FROM events
   JOIN band_event ON events.id=band_event.event_id
   JOIN bands ON band_event.band_id=bands.id
   JOIN user_event ON events.id=user_event.event_id
@@ -46,7 +46,7 @@ router.get("/upcoming/:id", rejectUnauthenticated, (req, res) => {
 
 router.get("/upcoming/week/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
-  SELECT bands.band_name, events.date, events.id FROM events
+  SELECT bands.band_name, bands.id as band_id, events.date, events.id FROM events
   JOIN band_event ON events.id=band_event.event_id
   JOIN bands ON band_event.band_id=bands.id
   JOIN user_event ON events.id=user_event.event_id
