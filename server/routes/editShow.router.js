@@ -39,13 +39,4 @@ WHERE id = $5;
     });
 });
 
-// router.put("/second/:id", rejectUnauthenticated, (req, res) => {
-//   console.log(req.body);
-// });
-
-/**
- * POST route template
- */
-router.post("/", (req, res) => {});
-
 module.exports = router;

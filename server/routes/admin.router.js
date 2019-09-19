@@ -27,7 +27,7 @@ router.get("/allShows", rejectUnauthenticated, (req, res) => {
 
 //POST route template
 
-router.delete("/bandDelete/:id", async (req, res) => {
+router.delete("/bandDelete/:id", rejectUnauthenticated, async (req, res) => {
   const id = req.params.id;
 
   const connection = await pool.connect();
@@ -76,7 +76,7 @@ router.delete("/bandDelete/:id", async (req, res) => {
   }
 });
 
-router.delete("/deleteShow/:id", async (req, res) => {
+router.delete("/deleteShow/:id", rejectUnauthenticated, async (req, res) => {
   const id = req.params.id;
 
   const connection = await pool.connect();
@@ -110,7 +110,7 @@ router.delete("/deleteShow/:id", async (req, res) => {
   }
 });
 
-router.delete(`/deleteShow/:id`, (req, res) => {
+router.delete(`/deleteShow/:id`, rejectUnauthenticated, (req, res) => {
   console.log("i am the band deleter");
   const band_eventQuery = `
     DELETE FROM band_event WHERE event_id=$1;`;

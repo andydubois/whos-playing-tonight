@@ -90,7 +90,7 @@ class BandPage extends Component {
               <h5>Add</h5>
               <h5 className='bandsHeader'>YouTube</h5>
               <h5 className='bandsHeader'>Music Link</h5>
-              <form className='addShowForm' onSubmit={this.handleSubmit}>
+              <form className='addYtForm' onSubmit={this.handleSubmit}>
                 <div className='form-group'>
                   <label>YouTube Link</label>
                   <input

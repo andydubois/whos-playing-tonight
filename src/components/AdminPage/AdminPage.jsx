@@ -7,8 +7,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import AdminPageList from "../AdminPageList/AdminPageList"
-import AdminBandList from "../AdminBandList/AdminBandList"
+import AdminPageList from "../AdminPageList/AdminPageList";
+import AdminBandList from "../AdminBandList/AdminBandList";
 import { CssBaseline } from "@material-ui/core";
 
 class Admin extends Component {
@@ -23,7 +23,9 @@ class Admin extends Component {
   }
 
   render() {
-    return (
+    return this.props.store.user.clearance < 2 ? (
+      <p>404 error</p>
+    ) : (
       <div className='react-transition swipe-right'>
         <CssBaseline />
         <h2>ADMIN</h2>

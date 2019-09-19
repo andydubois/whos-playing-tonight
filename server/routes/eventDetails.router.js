@@ -27,7 +27,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/guests/:id", (req, res) => {
+router.get("/guests/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
     SELECT "user".username FROM "user"
     JOIN "user_event" ON "user".id="user_event".user_id
@@ -48,39 +48,41 @@ router.get("/guests/:id", (req, res) => {
 /**
  * POST route template
  */
-router.post("/rsvp/:id", (req, res) => {
+router.post("/rsvp/:id", rejectUnauthenticated, (req, res) => {
   const user_id = req.body.userId;
   const event_id = req.body.eventId;
   console.log("req.body is", req.body);
   const queryText = `
     INSERT INTO "user_event" (user_id, event_id)
     VALUES ($1, $2);`;
-  pool.query(queryText, [user_id, event_id])
-  .then(result => {
-    res.sendStatus(200)
-    console.log("Successful RSVP POST server side")
-  })
-  .catch(error => {
-    console.log("error in rsvp POST route server side", error)
-    res.sendStatus(500);
-  })
-});
-
-router.delete("/noRsvp/:id", (req, res) => {
-    const event_id = req.body.eventId;
-    console.log(req.params.id,'this is the event id')
-    const queryText = `
-    DELETE FROM "user_event" WHERE "user_id" = $1 AND "event_id" = $2;`;
-    console.log('this is the query text for the delete route', queryText)
-    pool.query(queryText, [req.user.id, req.params.id])
+  pool
+    .query(queryText, [user_id, event_id])
     .then(result => {
-        res.sendStatus(200)
-        console.log('successful RSVP delete server side')
+      res.sendStatus(200);
+      console.log("Successful RSVP POST server side");
     })
     .catch(error => {
-        console.log('error in rsvp DELETE route server side', error)
-        res.sendStatus(500)
+      console.log("error in rsvp POST route server side", error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/noRsvp/:id", rejectUnauthenticated, (req, res) => {
+  const event_id = req.body.eventId;
+  console.log(req.params.id, "this is the event id");
+  const queryText = `
+    DELETE FROM "user_event" WHERE "user_id" = $1 AND "event_id" = $2;`;
+  console.log("this is the query text for the delete route", queryText);
+  pool
+    .query(queryText, [req.user.id, req.params.id])
+    .then(result => {
+      res.sendStatus(200);
+      console.log("successful RSVP delete server side");
     })
+    .catch(error => {
+      console.log("error in rsvp DELETE route server side", error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

@@ -168,3 +168,7 @@ form {
     color: white;
     size: 5em;
 }
+
+.guestHeader {
+    padding-top: 15px
+}

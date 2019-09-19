@@ -116,7 +116,6 @@ class EventPage extends Component {
             <TableRow>
               <TableCell></TableCell>
               <TableCell className='eventTableCell'>
-                <p>Headliner</p>
                 <p>
                   <MusicVideo className={classes.icon} />
                   {this.props.store.eventDetailsReducer.band_name}
@@ -142,6 +141,7 @@ class EventPage extends Component {
             </TableRow>
           </TableBody>
         </Table>
+        <h6 className="guestHeader">Attending</h6>
         <ul className='guestList'>{guestList}</ul>
         <Button onClick={this.rsvpForEvent} variant='contained' color='primary'>
           RSVP

@@ -47,7 +47,7 @@ router.post("/logout", (req, res) => {
 router.get("/history/:id", rejectUnauthenticated, (req, res) => {
   console.log("req.body is:", req.params.id);
   const queryText = `
-  SELECT bands.band_name, events.date, events.id FROM events
+  SELECT bands.band_name, "bands".id as band_id, events.date, events.id FROM events
   JOIN band_event ON events.id=band_event.event_id
   JOIN bands ON band_event.band_id=bands.id
   JOIN user_event ON events.id=user_event.event_id
@@ -64,7 +64,7 @@ router.get("/history/:id", rejectUnauthenticated, (req, res) => {
 
 router.get("/created/:id", rejectUnauthenticated, (req, res) => {
   const queryText = `
-  SELECT "bands".band_name, "events".creator_id, "events".date, "events".id FROM events
+  SELECT "bands".band_name, "bands".id as band_id, "events".creator_id, "events".date, "events".id FROM events
   JOIN band_event ON events.id=band_event.event_id
   JOIN bands ON band_event.band_id=bands.id
   WHERE events.creator_id=$1;`;
@@ -78,7 +78,7 @@ router.get("/created/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.delete("/deleteShow/:id", async (req, res) => {
+router.delete("/deleteShow/:id", rejectUnauthenticated, async (req, res) => {
   const id = req.params.id;
 
   const connection = await pool.connect();

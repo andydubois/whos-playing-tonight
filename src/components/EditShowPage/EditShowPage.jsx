@@ -82,7 +82,7 @@ class EditShowPage extends Component {
 
   render() {
     const showDate = (
-      <Moment format='MM/DD/YYYY'>
+      <Moment format='MM-DD-YYYY'>
         {this.props.store.eventDetailsReducer.date}
       </Moment>
     );
@@ -104,7 +104,7 @@ class EditShowPage extends Component {
               type='date'
               className='form-control'
               onChange={event => this.handleChange("showDate", event)}
-              defaultValue={showDate}
+              value={this.props.store.eventDetailsReducer.date}
             />
             <small className='form-text text-muted'>
               Previous date was {showDate}
