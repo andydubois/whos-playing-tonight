@@ -119,7 +119,6 @@ class AddShowsPage extends Component {
         <CssBaseline />
         <h1>Add New</h1>
         <h1>Show</h1>
-        <h1></h1>
         <form className='addShowForm' onSubmit={this.submitNewShow}>
           <div className='form-group'>
             <label>Headliner Selection</label>

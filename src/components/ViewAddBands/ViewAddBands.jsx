@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ViewAddList from "../ViewAddList/ViewAddList";
-import "./ViewAddBands.css"
+import "./ViewAddBands.css";
 
 //Material UI Components
 import Table from "@material-ui/core/Table";
@@ -11,15 +11,35 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import { CssBaseline } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+
+
+
+const styles = theme => ({
+  close: {
+    padding: theme.spacing.unit / 2
+  }
+});
 
 class ViewAddBands extends Component {
   state = {
-    band: ""
+    band: "",
+    snackBarOpen: false
   };
 
   componentDidMount() {
     this.getBandList();
   }
+
+  handleSnackBarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({ snackBarOpen: false });
+  };
 
   getBandList() {
     this.props.dispatch({
@@ -42,6 +62,8 @@ class ViewAddBands extends Component {
       type: "ADD_BAND",
       payload: this.state
     });
+    this.setState({ snackBarVenueOpen: true });
+    //clears band info from state after being added to database
     this.clearState();
   };
 
@@ -52,6 +74,7 @@ class ViewAddBands extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div className='react-transition swipe-right'>
         <CssBaseline />
@@ -117,6 +140,29 @@ class ViewAddBands extends Component {
             </div>
           </div>
         </div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center"
+          }}
+          open={this.state.snackBarOpen}
+          autoHideDuration={6000}
+          onClose={this.handleSnackBarClose}
+          ContentProps={{
+            "aria-describedby": "message-id"
+          }}
+          message={<span id='message-id'>New Band Added to List!</span>}
+          action={[
+            <IconButton
+              key='close'
+              aria-label='Close'
+              color='inherit'
+              className={classes.close}
+              onClick={this.handleSnackClose}>
+              <CloseIcon />
+            </IconButton>
+          ]}
+        />
       </div>
     );
   }
@@ -126,4 +172,4 @@ const mapStateToProps = store => ({
   store
 });
 
-export default connect(mapStateToProps)(ViewAddBands);
+export default withStyles(styles)(connect(mapStateToProps)(ViewAddBands));

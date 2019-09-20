@@ -122,6 +122,7 @@ class BandPage extends Component {
             <iframe
               id='ytplayer'
               type='text/html'
+              title={video.id}
               width='375'
               height='210'
               src={video.url}

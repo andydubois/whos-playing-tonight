@@ -102,8 +102,8 @@ class Home extends Component {
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Band</TableCell>
-                    <TableCell>Date</TableCell>
+                    <TableCell className='homeTableHeader'>Band</TableCell>
+                    <TableCell className='homeTableHeader'>Date</TableCell>
                     <TableCell></TableCell>
                   </TableRow>
                 </TableHead>
@@ -119,8 +119,8 @@ class Home extends Component {
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Band</TableCell>
-                    <TableCell>Date</TableCell>
+                    <TableCell className='homeTableHeader'>Band</TableCell>
+                    <TableCell className='homeTableHeader'>Date</TableCell>
                     <TableCell></TableCell>
                   </TableRow>
                 </TableHead>
@@ -135,8 +135,8 @@ class Home extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell>Band</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell className='homeTableHeader'>Band</TableCell>
+                  <TableCell className='homeTableHeader'>Date</TableCell>
                   <TableCell></TableCell>
                 </TableRow>
               </TableHead>

@@ -52,7 +52,6 @@ class AddShowVenueForm extends Component {
   componentDidMount() {}
 
   submitNewVenue = event => {
-    event.preventDefault();
     this.props.dispatch({
       type: "ADD_VENUE",
       payload: this.state.address

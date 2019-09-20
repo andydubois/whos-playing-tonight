@@ -45,7 +45,7 @@ class EventPage extends Component {
     this.getDetails();
     this.getGuests();
     this.props.store.eventGuestReducer.map(guest => {
-      if (guest.username == this.props.store.user.username) {
+      if (guest.username === this.props.store.user.username) {
         return console.log("THE USER NAMES MATCH!");
       } else {
         return console.log("NO DICE");

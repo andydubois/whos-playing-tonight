@@ -138,6 +138,16 @@ form {
 .MuiTableCell-root {
     font-size: 1rem;
     text-align: center;
+    width: 667px;
+}
+
+.homeTable {
+    padding: 0 0 0 0 !important;
+    text-align: center !important;
+}
+
+.homeTableHeader {
+    text-align: center !important;
 }
 
 .swal-text {

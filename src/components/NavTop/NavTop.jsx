@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Navbar, Nav, NavDropdown} from "react-bootstrap";
 import LogOutButton from "../LogOutButton/LogOutButton";
-import QueueMusic from "@material-ui/icons/QueueMusic";
 
 const TopNav = props => (
   <Navbar bg='dark' variant='dark' style={{ minWidth: 375 }}>
