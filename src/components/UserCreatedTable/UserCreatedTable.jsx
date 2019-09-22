@@ -34,7 +34,7 @@ class UserCreatedTable extends Component {
       text:
         "Are you sure you wanted to permanently delete this show from the database?",
       icon: "warning",
-      buttons: ["Cancel", "Yes, delete the band"],
+      buttons: ["Cancel", "Yes, delete the show."],
       dangerMode: true,
       className: "sweetAlert"
     }).then(willDelete => {
@@ -43,7 +43,7 @@ class UserCreatedTable extends Component {
           type: "DELETE_USER_SHOW",
           payload: this.props.show
         });
-        swal("The band will rock no more!", {
+        swal("The show will not go on.", {
           icon: "success"
         });
       } else {

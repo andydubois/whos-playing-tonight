@@ -73,7 +73,8 @@ class AdminPageList extends Component {
             onClick={this.deleteShow}>
             Delete
           </Button>
-          <Button className="editButton"
+          <Button
+            className='editButton'
             variant='contained'
             color='primary'
             onClick={this.goToEditPage}>

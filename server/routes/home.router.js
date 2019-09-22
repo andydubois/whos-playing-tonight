@@ -14,7 +14,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   JOIN "band_event" ON "events".id="band_event".event_id
   JOIN "bands" ON "band_event".band_id="bands".id
   WHERE "events".date > CURRENT_DATE
-  ORDER BY "events".date DESC;`;
+  ORDER BY "events".date ASC;`;
   pool
     .query(queryText)
     .then(results => {

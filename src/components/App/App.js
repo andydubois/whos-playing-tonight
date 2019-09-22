@@ -44,7 +44,8 @@ const theme = createMuiTheme({
       main: "#8b2635"
     },
     background: {
-      default: "rgb(32, 18, 64)"
+      default: "#775b23"
+      // rgb(32, 18, 64)
     },
     fontFamily: {
       default: "impact"

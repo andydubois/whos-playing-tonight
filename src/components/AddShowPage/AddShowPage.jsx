@@ -50,6 +50,15 @@ class AddShowsPage extends Component {
     });
     // opens snack bar on click
     this.setState({ snackBarShowOpen: true });
+    this.setState({
+      showInfo: {
+        showDate: "",
+        doorTime: "",
+        showTime: "",
+        venueId: 0,
+        bandId: 0
+      }
+    });
   };
 
   //sets state to true to reveal snack bar notification
@@ -124,6 +133,7 @@ class AddShowsPage extends Component {
             <label>Headliner Selection</label>
             <select
               className='form-control dropDownMenu'
+              value={this.state.showInfo.bandId}
               onChange={event => this.handleChange("bandId", event)}>
               <option value=''>None</option>
               {this.props.store.viewAddBandsReducer.map(band => {
@@ -143,6 +153,7 @@ class AddShowsPage extends Component {
             <label>Venue Selection</label>
             <select
               className='form-control dropDownMenu'
+              value={this.state.showInfo.venueId}
               onChange={event => this.handleChange("venueId", event)}>
               <option value=''>None</option>
               {this.props.store.venueReducer.map(venue => {
@@ -164,7 +175,7 @@ class AddShowsPage extends Component {
             <label>Date of Show</label>
             <input
               type='date'
-              // className='form-control'
+              value={this.state.showInfo.showDate}
               onChange={event => this.handleChange("showDate", event)}
             />
           </div>
@@ -172,7 +183,7 @@ class AddShowsPage extends Component {
             <label>Doors time?</label>
             <input
               type='time'
-              // className='form-control'
+              value={this.state.showInfo.doorTime}
               placeholder='7:00 pm'
               onChange={event => this.handleChange("doorTime", event)}
             />
@@ -181,7 +192,7 @@ class AddShowsPage extends Component {
             <label>Show start time?</label>
             <input
               type='time'
-              // className='form-control'
+              value={this.state.showInfo.showTime}
               placeholder=' time'
               onChange={event => this.handleChange("showTime", event)}
             />

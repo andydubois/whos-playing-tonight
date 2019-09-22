@@ -51,7 +51,7 @@ router.get("/history/:id", rejectUnauthenticated, (req, res) => {
   JOIN band_event ON events.id=band_event.event_id
   JOIN bands ON band_event.band_id=bands.id
   JOIN user_event ON events.id=user_event.event_id
-  WHERE user_event.user_id=$1 AND events.date < CURRENT_DATE;`;
+  WHERE user_event.user_id=$1 AND events.date < CURRENT_DATE ORDER BY events.date DESC;`;
   pool
     .query(queryText, [req.params.id])
     .then(results => {
