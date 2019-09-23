@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { CssBaseline } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 class LoginPage extends Component {
   state = {
-    username: '',
-    password: '',
+    username: "",
+    password: ""
   };
 
-  login = (event) => {
+  login = event => {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
       this.props.dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         payload: {
           username: this.state.username,
-          password: this.state.password,
-        },
+          password: this.state.password
+        }
       });
     } else {
-      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
-  } // end login
+  }; // end login
 
-  handleInputChangeFor = propertyName => (event) => {
+  handleInputChangeFor = propertyName => event => {
     this.setState({
-      [propertyName]: event.target.value,
+      [propertyName]: event.target.value
     });
-  }
+  };
 
   render() {
     return (
@@ -41,11 +41,12 @@ class LoginPage extends Component {
           </h2>
         )}
         <form className='loginForm' onSubmit={this.login}>
-          <h1 className="loginHeader">Login</h1>
+          <h1 className='loginHeader'>Login</h1>
           <div>
             <label htmlFor='username'>
               Username:
               <input
+                autofill='off'
                 type='text'
                 name='username'
                 value={this.state.username}
@@ -57,6 +58,7 @@ class LoginPage extends Component {
             <label htmlFor='password'>
               Password:
               <input
+                autofill='off'
                 type='password'
                 name='password'
                 value={this.state.password}
@@ -94,7 +96,7 @@ class LoginPage extends Component {
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
-  errors: state.errors,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps)(LoginPage);
