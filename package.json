@@ -38,11 +38,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "svgr": "svgr -d src/icons/ assets/"
+    "svgr": "svgr -d src/icons/ assets/",
+    "testServer": "jest server/tests/*.test.js --verbose --forceExit"
   },
   "devDependencies": {
     "@svgr/cli": "^4.3.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
   },
   "browserslist": [
     ">0.2%",

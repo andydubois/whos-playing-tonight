@@ -56,6 +56,7 @@ router.get("/history/:id", rejectUnauthenticated, (req, res) => {
     .query(queryText, [req.params.id])
     .then(results => {
       res.send(results.rows);
+      res.sendStatus(201);
     })
     .catch(error => {
       console.log("error in server side user history GET", error);
